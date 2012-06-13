@@ -1,0 +1,359 @@
+% vim: set tw=78:ts=2:sw=2:et:fdm=marker:fmr={{{{{,}}}}}:wrap
+
+%%
+%% This is file `thesis.cls',
+%%
+%% \CharacterTable
+%%  {Upper-case    \A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\V\W\X\Y\Z
+%%   Lower-case    \a\b\c\d\e\f\g\h\i\j\k\l\m\n\o\p\q\r\s\t\u\v\w\x\y\z
+%%   Digits        \0\1\2\3\4\5\6\7\8\9
+%%   Exclamation   \!     Double quote  \"     Hash (number) \#
+%%   Dollar        \$     Percent       \%     Ampersand     \&
+%%   Acute accent  \'     Left paren    \(     Right paren   \)
+%%   Asterisk      \*     Plus          \+     Comma         \,
+%%   Minus         \-     Point         \.     Solidus       \/
+%%   Colon         \:     Semicolon     \;     Less than     \<
+%%   Equals        \=     Greater than  \>     Question mark \?
+%%   Commercial at \@     Left bracket  \[     Backslash     \\
+%%   Right bracket \]     Circumflex    \^     Underscore    \_
+%%   Grave accent  \`     Left brace    \{     Vertical bar  \|
+%%   Right brace   \}     Tilde         \~}
+\NeedsTeXFormat{LaTeX2e}[2000/06/01]
+\ProvidesClass{thesis}
+  [2012/06/12 Document class for Arcada thesis]
+
+%% Preamble {{{{{
+
+%% Load packages
+\LoadClass{article}
+\RequirePackage{latexsym}
+\RequirePackage[utf8]{inputenc}
+\RequirePackage[T1]{fontenc}
+\RequirePackage{pslatex} % Use Times
+\RequirePackage[swedish,finnish,english]{babel}
+\RequirePackage{geometry}
+\RequirePackage{graphicx}
+\RequirePackage{eso-pic}
+\RequirePackage{color}
+\RequirePackage{tabularx}
+\RequirePackage{booktabs}
+\RequirePackage{array}
+\RequirePackage{xifthen}
+
+\newif\if@finnish
+\newif\if@swedish
+\newif\if@english
+\newif\if@emptyfirstpagenumber
+
+\DeclareOption{finnish}{\@finnishtrue}
+\DeclareOption{swedish}{\@swedishtrue}
+\DeclareOption{english}{\@englishtrue}
+\DeclareOption{emptyfirstpagenumber}{\@emptyfirstpagenumbertrue}
+
+% Look for images in a couple of places
+\graphicspath{{./}{../}{./images/}{../images/}}
+
+% Pass stuff through to article but remember if we did so we can use arcadas
+% defaults otherwise.
+
+\newif\if@defaulttypesize
+\newif\if@defaultpaper
+\newif\if@defaulttitlepage
+\@defaulttypesizetrue
+\@defaultpapertrue
+\@defaulttitlepagetrue
+
+\DeclareOption{10pt}{
+  \@defaulttypesizefalse
+  \PassOptionsToClass{10pt}{article}}
+\DeclareOption{11pt}{
+  \@defaulttypesizefalse
+  \PassOptionsToClass{11pt}{article}}
+
+\DeclareOption{a5paper}{
+  \@defaultpaperfalse
+  \PassOptionsToClass{a5paper}{article}}
+\DeclareOption{b5paper}{
+  \@defaultpaperfalse
+  \PassOptionsToClass{b5paper}{article}}
+\DeclareOption{letterpaper}{
+  \@defaultpaperfalse
+  \PassOptionsToClass{letterpaper}{article}}
+\DeclareOption{legalpaper}{
+  \@defaultpaperfalse
+  \PassOptionsToClass{legalpaper}{article}}
+\DeclareOption{executivepaper}{
+  \@defaultpaperfalse
+  \PassOptionsToClass{executivepaper}{article}}
+
+\DeclareOption{notitlepage}{
+  \@defaulttitlepagefalse
+  \PassOptionsToClass{notitlepage}{article}}
+
+\DeclareOption*{\PassOptionsToClass{\CurrentOption}{article}}
+
+% Use defaults if not otherwise specified
+\ProcessOptions\relax
+\if@defaulttypesize
+  \PassOptionsToClass{12pt}{article}
+\fi
+\if@defaultpaper
+  \PassOptionsToClass{a4paper}{article}
+\fi
+\if@defaulttitlepage
+  \PassOptionsToClass{titlepage}{article}
+\fi
+\ProcessOptions\relax
+
+% }}}}}
+%% Language {{{{{
+
+\newcommand{\defaultlanguage}[1]{\gdef\@defaultlanguage{#1}}
+\newcommand{\setdefaultlanguage}{%
+  \if@english
+    \selectlanguage{english}
+  \else
+    \if@swedish
+      \selectlanguage{swedish}
+    \else
+      \if@finnish
+        \selectlanguage{finnish}
+      \else
+        \selectlanguage{english}
+      \fi
+    \fi
+  \fi
+}
+\setdefaultlanguage
+
+%% }}}}}
+%% Localization  {{{{{
+
+\addto\captionsfinnish{ %
+  \def\sDegreeThesis    {Degree Thesis}%
+  \def\sDegreeProgramme {Degree Programme:}%
+  \def\sIdentification  {Identification number:}%
+  \def\sAuthor          {Author:}%
+  \def\sTitle           {Title:}%
+  \def\sSupervisor      {Supervisor (Arcada):}%
+  \def\sCommissionedBy  {Commissioned by:}%
+  \def\sAbstract        {Abstract:}%
+  \def\sKeywords        {Keywords:}%
+  \def\sPageCount       {Number of pages:}%
+  \def\sLanguage        {Language:}%
+  \def\sDateAcceptance  {Date of acceptance:}%
+  \def\sFinnish         {Finnish}%
+  \def\sEnglish         {English}%
+  \def\sSwedish         {Swedish}%
+}
+\addto\captionsenglish{%
+  \def\sDegreeThesis    {Degree Thesis}%
+  \def\sDegreeProgramme {Degree Programme:}%
+  \def\sIdentification  {Identification number:}%
+  \def\sAuthor          {Author:}%
+  \def\sTitle           {Title:}%
+  \def\sSupervisor      {Supervisor (Arcada):}%
+  \def\sCommissionedBy  {Commissioned by:}%
+  \def\sAbstract        {Abstract:}%
+  \def\sKeywords        {Keywords:}%
+  \def\sPageCount       {Number of pages:}%
+  \def\sLanguage        {Language:}%
+  \def\sDateAcceptance  {Date of acceptance:}%
+  \def\sFinnish         {Finnish}%
+  \def\sEnglish         {English}%
+  \def\sSwedish         {Swedish}%
+}
+\addto\captionsswedish{%
+  \def\sDegreeThesis    {Examensarbete}%
+  \def\sDegreeProgramme {Utbildningsprogram:}%
+  \def\sIdentification  {Identifikationsnummer:}%
+  \def\sAuthor          {Författare:}%
+  \def\sTitle           {Arbetets namn:}%
+  \def\sSupervisor      {Handledare (Arcada):}%
+  \def\sCommissionedBy  {Uppdragsgivare:}%
+  \def\sAbstract        {Sammandrag:}%
+  \def\sKeywords        {Nyckelord:}%
+  \def\sPageCount       {Sidantal:}%
+  \def\sLanguage        {Språk:}%
+  \def\sDateAcceptance  {Datum för godkännande:}%
+  \def\sFinnish         {Finska}%
+  \def\sEnglish         {Engelska}%
+  \def\sSwedish         {Svenska}%
+}
+
+%% }}}}}
+%% Basic page layout {{{{{
+
+\geometry{
+  top=1in,
+  left=1in,
+  right=1in,
+  bottom=1in,
+  nohead,
+  textheight=9.33in,
+  footskip=0.15in}% footheight=0.04in
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{1ex}
+\pagestyle{myheadings}
+\markright{}
+\pagenumbering{arabic}
+
+%% }}}}}
+%% Spacing {{{{{
+
+\newcommand{\onehalfspacing}{%
+  \ifcase\@ptsize\relax % 10pt
+    \renewcommand{\baselinestretch}{1.25}%
+  \or % 11pt
+    \renewcommand{\baselinestretch}{1.213}%
+  \or % 12pt
+    \renewcommand{\baselinestretch}{1.241}%
+  \fi
+  \normalsize
+}
+\newcommand{\doublespacing}{
+  \ifcase\@ptsize\relax % 10pt
+    \renewcommand{\baselinestretch}{1.667}%
+  \or % 11pt
+    \renewcommand{\baselinestretch}{1.618}%
+  \or % 12pt
+    \renewcommand{\baselinestretch}{1.655}%
+  \fi
+  \normalsize
+}
+\newcommand{\singlespacing}{%
+  \renewcommand{\baselinestretch}{1.0}%
+  \normalsize
+}
+
+%% }}}}}
+%% Values passed through commands {{{{{
+
+\newcommand{\university}[1]     {\gdef\@university{#1}}
+\newcommand{\level}[1]          {\gdef\@level{#1}}
+\newcommand{\subheading}[1]     {\gdef\@subheading{#1}}
+\newcommand{\programme}[1]      {\gdef\@programme{#1}}
+\newcommand{\thesisLanguage}[1] {\gdef\@thesisLanguage{#1}}
+\newcommand{\identification}[1] {\gdef\@identification{#1}}
+\newcommand{\supervisor}[1]     {\gdef\@supervisor{#1}}
+\newcommand{\commissionedBy}[1] {\gdef\@commissionedBy{#1}}
+\newcommand{\keywords}[1]       {\gdef\@keywords{#1}}
+
+\university{Arcada}
+\subheading{}
+\level{}
+\programme{}
+\identification{}
+\supervisor{}
+\commissionedBy{}
+\keywords{}
+
+% Set localize the name passed in to the document class
+\if@finnish \thesisLanguage{\sFinnish}
+\else\if@english \thesisLanguage{\sEnglish}
+\else\if@swedish \thesisLanguage{\sSwedish}
+\else \thesisLanguage{\sEnglish}
+\fi\fi\fi
+
+%% }}}}}
+%% Background bar {{{{{
+
+\definecolor{orange}{RGB}          {247,149,70}
+\definecolor{orangeSaturated}{RGB} {202,162,130}
+\definecolor{gray}{RGB}            {241,241,241}
+\definecolor{white}{RGB}           {255,255,255}
+\newcommand\cbox[2]{%
+  \colorbox{#1}{\parbox[b][\paperheight]{#2}{\vfill\hfill}}%
+}
+\newcommand\backgroundbar{
+  \put(0,0){%
+    \cbox{orange}{.5in}%
+    \cbox{gray}{1px}%
+    \hspace{-4px}%
+    \cbox{orangeSaturated}{1px}%
+    \hspace{-5px}%
+    \cbox{white}{5px}%
+  }
+}
+
+% }}}}}
+%% Maketitle {{{{{
+
+\renewcommand{\maketitle}{\
+  \AddToShipoutPicture*{\backgroundbar}
+
+  \onehalfspacing
+  \includegraphics[width=1.86in,height=0.45in]{logo.png}
+
+  \vspace*{2.5 in}
+
+  {\singlespacing\huge\bf\fontfamily{phv}\selectfont \@title}
+
+  {\LARGE \@subheading}
+
+  \vspace{0.67 in}
+
+  \Large % 14pt
+
+  \@author
+
+  \vspace*{\fill}
+
+  \begin{flushright}
+    \@level\\
+    \@programme\\
+    \@date\\
+  \end{flushright}%
+}
+%% }}}}}
+%% Abstract {{{{{
+\def\division{\char'057}
+
+%\multicolumn{2}{|1}{\degreethesis} \\ \hline
+\newcommand{\coljoin}[1]{\multicolumn{2}{ !{\VRule[2pt]} l !{\VRule[2pt]} }{#1}}
+\newcommand{\thickrule}{\specialrule{2pt}{0pt}{0pt}}
+\newcommand\VRule[1][\arrayrulewidth]{\vrule width #1}
+\newcommand{\vthickrule}{\vrule width 2pt}
+\renewenvironment{abstract}[1]{%
+  \ifthenelse{\isempty{#1}}{}{\selectlanguage{#1}}
+  \pagestyle{empty}
+  \newpage
+    \normalsize
+    \singlespacing
+    \renewcommand{\arraystretch}{1.2}
+    \begin{tabularx}{\textwidth}{ !{\vthickrule} p{5cm} | X !{\vthickrule} }
+      \thickrule
+      \coljoin{\MakeUppercase\@level}         \\ \hline% todo uppercase
+      \coljoin{\@university}                  \\ \hline
+      \coljoin{}                              \\ \hline
+      \sDegreeProgramme    & \@programme      \\ \hline
+      \coljoin{}                              \\ \hline
+      \sIdentification     & \@identification \\ \hline
+      \sAuthor             & \@author         \\ \hline
+      \sTitle              & \@title          \\ \hline
+      \sSupervisor         & \@supervisor     \\ \hline
+      \coljoin{}                              \\ \hline
+      \sCommissionedBy     & \@commissionedBy \\ \hline
+      \coljoin{}                              \\ \thickrule
+      \coljoin{\sAbstract}                    \\ %todo do this in a nicer way
+    \end{tabularx}
+    \vskip -7px%
+    \tabularx{\textwidth}{ !{\vthickrule} X !{\vthickrule} }%
+}{
+    \endtabularx
+    \vskip -7px%
+    \begin{tabularx}{\textwidth}{ !{\vthickrule} p{5cm} | X !{\vthickrule} }
+      \thickrule
+      \sKeywords           & \@keywords       \\ \hline
+      \sPageCount          & ..               \\ \hline %todo automagic
+       \sLanguage          & \@thesisLanguage \\ \hline %todo language
+      \sDateAcceptance     &                  \\ \thickrule
+    \end{tabularx}
+    \setdefaultlanguage
+    \pagestyle{empty}
+    \newpage
+}
+%% }}}}}
+
+\endinput
+%%
