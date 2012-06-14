@@ -33,6 +33,7 @@
 \RequirePackage[swedish,finnish,english]{babel}
 \RequirePackage{geometry}
 \RequirePackage{graphicx}
+\RequirePackage{epstopdf} % Support eps with pdflatex
 \RequirePackage{eso-pic}
 \RequirePackage{color}
 \RequirePackage{tabularx}
@@ -283,7 +284,7 @@
   \AddToShipoutPicture*{\backgroundbar}
 
   \onehalfspacing
-  \includegraphics[width=1.86in,height=0.45in]{logo.png}
+  \includegraphics[width=1.86in,height=0.45in]{logo.pdf}
 
   \vspace*{2.5 in}
 
