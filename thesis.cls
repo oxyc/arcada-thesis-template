@@ -41,6 +41,7 @@
 \RequirePackage{xifthen}
 \RequirePackage{setspace} % Line spacing
 \RequirePackage{titlesec} % Customize section titles
+\RequirePackage[titles]{tocloft} % Customize ToC
 
 \newif\if@finnish
 \newif\if@swedish
@@ -287,6 +288,52 @@
     \@date\\
   \end{flushright}%
 }
+%% }}}}}
+%% Tabel of Contents {{{{{
+
+% Make dots more compact
+\renewcommand\@dotsep{0}
+
+% Change space between number and title
+\renewcommand*\l@section{\@dottedtocline{3}{1.5em}{2.3em}}
+\renewcommand*\l@subsection{\@dottedtocline{3}{2.5em}{3em}}
+\renewcommand*\l@subsubsection{\@dottedtocline{3}{3.5em}{3.3em}}
+
+% Style section titles
+\let\stdl@section\l@section
+\renewcommand*{\l@section}[2]{%
+  \onehalfspace%
+  \stdl@section{%
+    \bf\LARGE\fontfamily{phv}\selectfont{#1}}{%
+    \bf\LARGE\fontfamily{phv}\selectfont{#2}}%
+}
+
+% Style subsection titles
+\let\stdl@subsection\l@subsection
+\renewcommand*{\l@subsection}[2]{%
+  \onehalfspace%
+  \stdl@subsection{%
+    \Large\fontfamily{phv}\selectfont{#1}}{%
+    \Large\fontfamily{phv}\selectfont{#2}}%
+}
+
+% Style subsection titles
+\let\stdl@subsubsection\l@subsubsection
+\renewcommand*{\l@subsubsection}[2]{%
+  \setstretch{0.8}%
+  \stdl@subsubsection{%
+    \Large\it\fontfamily{phv}\selectfont{#1}}{%
+    \Large\it\fontfamily{phv}\selectfont{#2}}%
+}
+
+% Append section titles with dots
+\renewcommand{\cftsecdotsep}{\cftdotsep}
+
+\newcommand{\maketoc}{
+  \tableofcontents
+  \newpage
+}
+
 %% }}}}}
 %% Abstract {{{{{
 \def\division{\char'057}
