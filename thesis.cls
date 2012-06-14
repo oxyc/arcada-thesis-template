@@ -33,7 +33,6 @@
 \RequirePackage[swedish,finnish,english]{babel}
 \RequirePackage{geometry}
 \RequirePackage{graphicx}
-\RequirePackage{epstopdf} % Support eps with pdflatex
 \RequirePackage{eso-pic}
 \RequirePackage{color}
 \RequirePackage{tabularx}
