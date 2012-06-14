@@ -260,7 +260,7 @@
 }
 
 % }}}}}
-%% Maketitle {{{{{
+%% Title {{{{{
 
 \renewcommand{\maketitle}{\
   \AddToShipoutPicture*{\backgroundbar}
@@ -336,9 +336,7 @@
 
 %% }}}}}
 %% Abstract {{{{{
-\def\division{\char'057}
 
-%\multicolumn{2}{|1}{\degreethesis} \\ \hline
 \newcommand{\coljoin}[1]{\multicolumn{2}{ !{\VRule[2pt]} l !{\VRule[2pt]} }{#1}}
 \newcommand{\thickrule}{\specialrule{2pt}{0pt}{0pt}}
 \newcommand\VRule[1][\arrayrulewidth]{\vrule width #1}
