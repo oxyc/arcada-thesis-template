@@ -40,6 +40,7 @@
 \RequirePackage{array}
 \RequirePackage{xifthen}
 \RequirePackage{setspace} % Line spacing
+\RequirePackage{titlesec} % Customize section titles
 
 \newif\if@finnish
 \newif\if@swedish
@@ -198,7 +199,14 @@
 \pagestyle{myheadings}
 \markright{}
 \pagenumbering{arabic}
+\titleformat{\section}{%
+  \LARGE\bf\fontfamily{phv}\selectfont}{\thesection}{1em}{\MakeUppercase}
+\titleformat{\subsection}{%
+  \LARGE\bf\fontfamily{phv}\selectfont}{\thesubsection}{1em}{}
+\titleformat{\subsubsection}{%
+  \Large\bf\fontfamily{phv}\selectfont}{\thesubsubsection}{1em}{}
 
+%\titleformat{\section}{\LARGE\bf\MakeUppercase\fontfamily{phv}\selectfont}{\thesection}{1em}{}
 
 %% }}}}}
 %% Values passed through commands {{{{{
