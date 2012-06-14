@@ -39,6 +39,7 @@
 \RequirePackage{booktabs}
 \RequirePackage{array}
 \RequirePackage{xifthen}
+\RequirePackage{setspace} % Line spacing
 
 \newif\if@finnish
 \newif\if@swedish
@@ -198,33 +199,6 @@
 \markright{}
 \pagenumbering{arabic}
 
-%% }}}}}
-%% Spacing {{{{{
-
-\newcommand{\onehalfspacing}{%
-  \ifcase\@ptsize\relax % 10pt
-    \renewcommand{\baselinestretch}{1.25}%
-  \or % 11pt
-    \renewcommand{\baselinestretch}{1.213}%
-  \or % 12pt
-    \renewcommand{\baselinestretch}{1.241}%
-  \fi
-  \normalsize
-}
-\newcommand{\doublespacing}{
-  \ifcase\@ptsize\relax % 10pt
-    \renewcommand{\baselinestretch}{1.667}%
-  \or % 11pt
-    \renewcommand{\baselinestretch}{1.618}%
-  \or % 12pt
-    \renewcommand{\baselinestretch}{1.655}%
-  \fi
-  \normalsize
-}
-\newcommand{\singlespacing}{%
-  \renewcommand{\baselinestretch}{1.0}%
-  \normalsize
-}
 
 %% }}}}}
 %% Values passed through commands {{{{{
