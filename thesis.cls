@@ -198,23 +198,24 @@
   \def\sFinnish         {Suomi}%
   \def\sEnglish         {Englanti}%
   \def\sSwedish         {Ruotsi}%
+  \def\sFigure          {Figuuri}%
+  \def\sTable           {Taulukko}%
 }
 
 %% }}}
 %% Basic page layout {{{
-
 \geometry{
-  top=1in,
-  left=1in,
-  right=1in,
-  bottom=1in,
+  top=2.5cm,
+  left=3cm,
+  right=3cm,
+  bottom=2.5cm,
   nohead,
-  textheight=9.33in,
-  footskip=0.15in}% footheight=0.04in
+  textwidth=15cm, % 21cm
+  textheight=23.8cm,% 29.7cm
+  footskip=-0.9cm}
 \setlength{\parindent}{0pt}
 \setlength{\parskip}{1ex}
-\pagestyle{myheadings}
-\markright{}
+\pagestyle{plain}
 \pagenumbering{arabic}
 \titleformat{\section}{%
   \LARGE\bf\fontfamily{phv}\selectfont}{\thesection}{1em}{\MakeUppercase}
@@ -247,11 +248,15 @@
 \commissionedBy{}
 \keywords{}
 
-% Set localize the name passed in to the document class
-\if@finnish \thesisLanguage{\sFinnish}
-\else\if@english \thesisLanguage{\sEnglish}
-\else\if@swedish \thesisLanguage{\sSwedish}
-\else \thesisLanguage{\sEnglish}
+% Set some languagespecific values
+\if@finnish
+  \thesisLanguage{\sFinnish}
+\else\if@english
+  \thesisLanguage{\sEnglish}
+\else\if@swedish
+  \thesisLanguage{\sSwedish}
+\else
+  \thesisLanguage{\sEnglish}
 \fi\fi\fi
 
 %% }}}
@@ -266,12 +271,12 @@
 }
 \newcommand\backgroundbar{
   \put(0,0){%
-    \cbox{orange}{.5in}%
-    \cbox{gray}{1px}%
-    \hspace{-4px}%
-    \cbox{orangeSaturated}{1px}%
-    \hspace{-5px}%
-    \cbox{white}{5px}%
+    \cbox{orange}{2cm}%
+    \cbox{gray}{1pt}%
+    \hspace{-4pt}%
+    \cbox{orangeSaturated}{1pt}%
+    \hspace{-5pt}%
+    \cbox{white}{5pt}%
   }
 }
 
@@ -281,16 +286,16 @@
 \renewcommand{\maketitle}{\
   \AddToShipoutPicture*{\backgroundbar}
 
-  \onehalfspacing
-  \includegraphics[width=1.86in,height=0.45in]{logo.pdf}
+  \vspace*{-1.75cm}
+  \includegraphics[width=4.72cm]{logo.pdf}
 
-  \vspace*{2.5 in}
+  \vspace*{6.35cm}
 
-  {\singlespacing\huge\bf\fontfamily{phv}\selectfont \@title}
+  {\doublespacing\huge\bf\fontfamily{phv}\selectfont \@title}
 
   {\LARGE \@subheading}
 
-  \vspace{0.67 in}
+  \vspace{1.7cm}
 
   \Large % 14pt
 
