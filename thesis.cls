@@ -111,23 +111,35 @@
 % }}}
 %% Language {{{
 
+\newlength{\figurelength}
+\newlength{\tablelength}
 \newcommand{\defaultlanguage}[1]{\gdef\@defaultlanguage{#1}}
 \newcommand{\setdefaultlanguage}{%
   \if@english
     \selectlanguage{english}
+    \setlength{\figurelength}{\widthof{Figuuri~99.~}}
+    \setlength{\tablelength}{\widthof{Taulukko~99.~}}
   \else
     \if@swedish
       \selectlanguage{swedish}
+      \setlength{\figurelength}{\widthof{Figur~99.~}}
+      \setlength{\tablelength}{\widthof{Tabell~99.~}}
     \else
       \if@finnish
         \selectlanguage{finnish}
+        \setlength{\figurelength}{\widthof{Figuuri~99.~}}
+        \setlength{\tablelength}{\widthof{Taulukko~99.~}}
       \else
         \selectlanguage{english}
+        \setlength{\figurelength}{\widthof{Figuuri~99.~}}
+        \setlength{\tablelength}{\widthof{Taulukko~99.~}}
       \fi
     \fi
   \fi
 }
 \setdefaultlanguage
+\addtolength{\figurelength}{5ex}
+\addtolength{\tablelength}{3ex}
 
 %% }}}
 %% Localization  {{{
@@ -148,6 +160,8 @@
   \def\sFinnish         {Finnish}%
   \def\sEnglish         {English}%
   \def\sSwedish         {Swedish}%
+  \def\sFigure          {Figure}%
+  \def\sTable           {Table}%
 }
 \addto\captionsswedish{%
   \def\sDegreeThesis    {Examensarbete}%
@@ -165,6 +179,8 @@
   \def\sFinnish         {Finska}%
   \def\sEnglish         {Engelska}%
   \def\sSwedish         {Svenska}%
+  \def\sFigure          {Figur}%
+  \def\sTable           {Tabell}%
 }
 \addto\captionsfinnish{ %
   \def\sDegreeThesis    {Opinnäyte}%
@@ -289,15 +305,32 @@
   \end{flushright}%
 }
 %% }}}
-%% Tabel of Contents {{{
+%% ToC / LoF / LoT {{{
+
+% Don't show page numbering.
+\addtocontents{toc}{\protect\thispagestyle{empty}}
+\addtocontents{lof}{\protect\thispagestyle{empty}}
+\addtocontents{lot}{\protect\thispagestyle{empty}}
 
 % Make dots more compact
-\renewcommand\@dotsep{0}
+% \renewcommand\@dotsep{0}
 
-% Change space between number and title
-\renewcommand*\l@section{\@dottedtocline{3}{1.5em}{2.3em}}
-\renewcommand*\l@subsection{\@dottedtocline{3}{2.5em}{3em}}
-\renewcommand*\l@subsubsection{\@dottedtocline{3}{3.5em}{3.3em}}
+% Style LoF
+\setlength{\cftfigindent}{0cm} % Remove indent
+\setlength{\cftfignumwidth}{\figurelength}
+\renewcommand*\cftfigpresnum{\sFigure~}
+\renewcommand{\cftfigaftersnum}{.~}
+
+% Style LoT
+\setlength{\cfttabindent}{0cm} % Remove indent
+\setlength{\cfttabnumwidth}{\tablelength}
+\renewcommand*\cfttabpresnum{\sTable~}
+\renewcommand{\cfttabaftersnum}{.~}
+
+% Change space between numbering and ToC titles
+\renewcommand*\l@section{\@dottedtocline{3}{0cm}{2.3em}}
+\renewcommand*\l@subsection{\@dottedtocline{3}{0.39cm}{3em}}
+\renewcommand*\l@subsubsection{\@dottedtocline{3}{0.78cm}{3.3em}}
 
 % Style section titles
 \let\stdl@section\l@section
