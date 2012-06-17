@@ -132,23 +132,6 @@
 %% }}}
 %% Localization  {{{
 
-\addto\captionsfinnish{ %
-  \def\sDegreeThesis    {Degree Thesis}%
-  \def\sDegreeProgramme {Degree Programme:}%
-  \def\sIdentification  {Identification number:}%
-  \def\sAuthor          {Author:}%
-  \def\sTitle           {Title:}%
-  \def\sSupervisor      {Supervisor (Arcada):}%
-  \def\sCommissionedBy  {Commissioned by:}%
-  \def\sAbstract        {Abstract:}%
-  \def\sKeywords        {Keywords:}%
-  \def\sPageCount       {Number of pages:}%
-  \def\sLanguage        {Language:}%
-  \def\sDateAcceptance  {Date of acceptance:}%
-  \def\sFinnish         {Finnish}%
-  \def\sEnglish         {English}%
-  \def\sSwedish         {Swedish}%
-}
 \addto\captionsenglish{%
   \def\sDegreeThesis    {Degree Thesis}%
   \def\sDegreeProgramme {Degree Programme:}%
@@ -182,6 +165,23 @@
   \def\sFinnish         {Finska}%
   \def\sEnglish         {Engelska}%
   \def\sSwedish         {Svenska}%
+}
+\addto\captionsfinnish{ %
+  \def\sDegreeThesis    {Opinnäyte}%
+  \def\sDegreeProgramme {Koulutusohjelma:}%
+  \def\sIdentification  {Tunnistenumero:}%
+  \def\sAuthor          {Tekijä:}%
+  \def\sTitle           {Työn nimi:}%
+  \def\sSupervisor      {Työn ohjaaja (Arcada):}%
+  \def\sCommissionedBy  {Toimeksiantaja:}%
+  \def\sAbstract        {Tiivistelmä:}%
+  \def\sKeywords        {Avainsanat:}%
+  \def\sPageCount       {Sivumäärä:}%
+  \def\sLanguage        {Kieli:}%
+  \def\sDateAcceptance  {Hyväksymispäivämäärä:}%
+  \def\sFinnish         {Suomi}%
+  \def\sEnglish         {Englanti}%
+  \def\sSwedish         {Ruotsi}%
 }
 
 %% }}}
