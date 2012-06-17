@@ -39,6 +39,8 @@
 \RequirePackage{booktabs}
 \RequirePackage{array}
 \RequirePackage{xifthen}
+\RequirePackage{caption} % Position captions
+\RequirePackage{changepage} % As we cant rely on latest geometry package.
 \RequirePackage{lastpage} % Get page count
 \RequirePackage{setspace} % Line spacing
 \RequirePackage{titlesec} % Customize section titles
@@ -61,6 +63,37 @@
 \ProcessOptions\relax
 
 % }}}
+%% Basic page layout {{{
+\geometry{
+  top=2.5cm,
+  left=3cm,
+  right=3cm,
+  bottom=3.4cm, % 2.5cm + 0.9cm
+  nohead,
+  footskip=0.9cm}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{1ex}
+\setstretch{1.5}
+\pagestyle{plain}
+\pagenumbering{arabic}
+\titleformat{\section}{%
+  \Large\bf\fontfamily{phv}\selectfont}{\thesection}{1em}{\MakeUppercase}
+\titleformat{\subsection}{%
+  \Large\bf\fontfamily{phv}\selectfont}{\thesubsection}{1em}{}
+\titleformat{\subsubsection}{%
+  \large\bf\fontfamily{phv}\selectfont}{\thesubsubsection}{1em}{}
+
+\captionsetup[table]{%
+  position=top, labelsep=period,%
+  singlelinecheck=false, justification=justified,% align left
+  textfont=it, labelfont=it, font=footnotesize}
+
+\captionsetup[figure]{%
+  position=bottom, labelsep=period,%
+  singlelinecheck=false, justification=justified,% align left
+  textfont=it, labelfont=it, font=footnotesize}
+
+%% }}}
 %% Language {{{
 
 \newlength{\figurelength}
@@ -90,8 +123,6 @@
   \fi
 }
 \setdefaultlanguage
-\addtolength{\figurelength}{5ex}
-\addtolength{\tablelength}{3ex}
 
 %% }}}
 %% Localization  {{{
@@ -161,30 +192,6 @@
 }
 
 %% }}}
-%% Basic page layout {{{
-\geometry{
-  top=2.5cm,
-  left=3cm,
-  right=3cm,
-  bottom=2.5cm,
-  nohead,
-  textwidth=15cm, % 21cm
-  textheight=23.8cm,% 29.7cm
-  footskip=-0.9cm}
-\setlength{\parindent}{0pt}
-\setlength{\parskip}{1ex}
-\pagestyle{plain}
-\pagenumbering{arabic}
-\titleformat{\section}{%
-  \LARGE\bf\fontfamily{phv}\selectfont}{\thesection}{1em}{\MakeUppercase}
-\titleformat{\subsection}{%
-  \LARGE\bf\fontfamily{phv}\selectfont}{\thesubsection}{1em}{}
-\titleformat{\subsubsection}{%
-  \Large\bf\fontfamily{phv}\selectfont}{\thesubsubsection}{1em}{}
-
-%\titleformat{\section}{\LARGE\bf\MakeUppercase\fontfamily{phv}\selectfont}{\thesection}{1em}{}
-
-%% }}}
 %% Background bar {{{
 
 \definecolor{orange}{RGB}          {247,149,70}
@@ -196,11 +203,11 @@
 }
 \newcommand\backgroundbar{
   \put(0,0){%
-    \cbox{orange}{2cm}%
+    \cbox{orange}{1.3cm}%
     \cbox{gray}{1pt}%
     \hspace{-4pt}%
     \cbox{orangeSaturated}{1pt}%
-    \hspace{-5pt}%
+    \hspace{-6pt}%
     \cbox{white}{5pt}%
   }
 }
@@ -241,35 +248,43 @@
 %% }}}
 %% Title {{{
 
-\renewcommand{\maketitle}{\
+% As the ubuntu repository doesn't contain the latest version of geometry which
+% has the command \newgeometry, we need to do an ugly hack which requires the
+% title page to be printed first
+\addtolength\textheight{3cm}
+
+\renewcommand{\maketitle}{
   \AddToShipoutPicture*{\backgroundbar}
+  \begin{adjustwidth}{-0.5cm}{}\begin{spacing}{2.0}
+    \vspace*{-1.75cm}
+    \includegraphics[width=4.72cm]{logo.pdf}
 
-  \vspace*{-1.75cm}
-  \includegraphics[width=4.72cm]{logo.pdf}
+    \vspace*{6.35cm}
 
-  \vspace*{6.35cm}
+    {\LARGE\bf\fontfamily{phv}\selectfont \@title}
 
-  {\doublespacing\huge\bf\fontfamily{phv}\selectfont \@title}
+    {\Large \@subheading}
 
-  {\LARGE \@subheading}
+    \vspace{1.7cm}
 
-  \vspace{1.7cm}
+    \begin{large} % 14pt
+      \@author
 
-  \Large % 14pt
-
-  \@author
-
-  \vspace*{\fill}
-
-  \begin{flushright}
-    \@level\\
-    \@programme\\
-    \@date\\
-  \end{flushright}%
+      \vspace*{\fill}
+      \begin{adjustwidth}{}{-2.5cm}
+        \begin{flushright}
+          \onehalfspacing
+          \@level\\
+          \@programme\\
+          \@date\\
+        \end{flushright}%
+      \end{adjustwidth}%
+    \end{large}
+  \end{spacing}\end{adjustwidth}
+  \addtolength\textheight{-3cm} % Reset to original textheight
 }
 %% }}}
 %% ToC / LoF / LoT {{{
-
 % Don't show page numbering.
 \addtocontents{toc}{\protect\thispagestyle{empty}}
 \addtocontents{lof}{\protect\thispagestyle{empty}}
@@ -291,45 +306,45 @@
 \renewcommand{\cfttabaftersnum}{.~}
 
 % Change space between numbering and ToC titles
-\renewcommand*\l@section{\@dottedtocline{3}{0cm}{2.3em}}
-\renewcommand*\l@subsection{\@dottedtocline{3}{0.39cm}{3em}}
-\renewcommand*\l@subsubsection{\@dottedtocline{3}{0.78cm}{3.3em}}
+\renewcommand*\l@section{\@dottedtocline{3}{0cm}{1cm}}
+\renewcommand*\l@subsection{\@dottedtocline{3}{0.39cm}{1.2cm}}
+\renewcommand*\l@subsubsection{\@dottedtocline{3}{0.78cm}{1.5cm}}
 
 % Style section titles
 \let\stdl@section\l@section
 \renewcommand*{\l@section}[2]{%
-  \onehalfspace%
+  \doublespacing%
   \stdl@section{%
-    \bf\LARGE\fontfamily{phv}\selectfont{#1}}{%
-    \bf\LARGE\fontfamily{phv}\selectfont{#2}}%
+    \bf\fontsize{12pt}{6pt}\fontfamily{phv}\selectfont{#1}}{%
+    \bf\fontsize{12pt}{6pt}\fontfamily{phv}\selectfont{#2}}%
 }
 
 % Style subsection titles
 \let\stdl@subsection\l@subsection
 \renewcommand*{\l@subsection}[2]{%
-  \onehalfspace%
+  \singlespace%
   \stdl@subsection{%
-    \Large\fontfamily{phv}\selectfont{#1}}{%
-    \Large\fontfamily{phv}\selectfont{#2}}%
+    \fontsize{11pt}{0pt}\fontfamily{phv}\selectfont{#1}}{%
+    \fontsize{11pt}{0pt}\fontfamily{phv}\selectfont{#2}}%
 }
 
 % Style subsection titles
 \let\stdl@subsubsection\l@subsubsection
 \renewcommand*{\l@subsubsection}[2]{%
-  \setstretch{0.8}%
+  \singlespace%
   \stdl@subsubsection{%
-    \Large\it\fontfamily{phv}\selectfont{#1}}{%
-    \Large\it\fontfamily{phv}\selectfont{#2}}%
+    \it\fontsize{11pt}{0pt}\fontfamily{phv}\selectfont{#1}}{%
+    \it\fontsize{11pt}{0pt}\fontfamily{phv}\selectfont{#2}}%
 }
 
 % Append section titles with dots
 \renewcommand{\cftsecdotsep}{\cftdotsep}
 
 % Override main commands
-\let\stdl@tableofcontents\tableofcontents
+\let\stdtableofcontents\tableofcontents
 \renewcommand*{\tableofcontents}{
   \setdefaultlanguage
-  \stdl@tableofcontents
+  \stdtableofcontents
   \newpage
 }
 
@@ -346,7 +361,7 @@
   \newpage
     \normalsize
     \singlespacing
-    \renewcommand{\arraystretch}{1.2}
+    \renewcommand{\arraystretch}{1.1}
     \begin{tabularx}{\textwidth}{ !{\vthickrule} p{5cm} | X !{\vthickrule} }
       \thickrule
       \coljoin{\MakeUppercase\level}          \\ \hline
