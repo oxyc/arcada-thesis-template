@@ -234,6 +234,27 @@
 %\titleformat{\section}{\LARGE\bf\MakeUppercase\fontfamily{phv}\selectfont}{\thesection}{1em}{}
 
 %% }}}
+%% Background bar {{{
+
+\definecolor{orange}{RGB}          {247,149,70}
+\definecolor{orangeSaturated}{RGB} {202,162,130}
+\definecolor{gray}{RGB}            {241,241,241}
+\definecolor{white}{RGB}           {255,255,255}
+\newcommand\cbox[2]{%
+  \colorbox{#1}{\parbox[b][\paperheight]{#2}{\vfill\hfill}}%
+}
+\newcommand\backgroundbar{
+  \put(0,0){%
+    \cbox{orange}{2cm}%
+    \cbox{gray}{1pt}%
+    \hspace{-4pt}%
+    \cbox{orangeSaturated}{1pt}%
+    \hspace{-5pt}%
+    \cbox{white}{5pt}%
+  }
+}
+
+% }}}
 %% Values passed through commands {{{
 
 \newcommand{\university}[1]     {\gdef\@university{#1}}
@@ -267,27 +288,6 @@
 \fi\fi\fi
 
 %% }}}
-%% Background bar {{{
-
-\definecolor{orange}{RGB}          {247,149,70}
-\definecolor{orangeSaturated}{RGB} {202,162,130}
-\definecolor{gray}{RGB}            {241,241,241}
-\definecolor{white}{RGB}           {255,255,255}
-\newcommand\cbox[2]{%
-  \colorbox{#1}{\parbox[b][\paperheight]{#2}{\vfill\hfill}}%
-}
-\newcommand\backgroundbar{
-  \put(0,0){%
-    \cbox{orange}{2cm}%
-    \cbox{gray}{1pt}%
-    \hspace{-4pt}%
-    \cbox{orangeSaturated}{1pt}%
-    \hspace{-5pt}%
-    \cbox{white}{5pt}%
-  }
-}
-
-% }}}
 %% Title {{{
 
 \renewcommand{\maketitle}{\
