@@ -376,6 +376,7 @@
 % Override main commands
 \let\stdl@tableofcontents\tableofcontents
 \renewcommand*{\tableofcontents}{
+  \setdefaultlanguage
   \stdl@tableofcontents
   \newpage
 }
