@@ -4,88 +4,14 @@
 
 \begin{document}
 
-%% Preamble {{{
+\input{settings}
+\input{pages/title}
+\input{pages/abstract}
+\input{pages/tables}
 
-\title{Tittel på examensarbete}
-\subheading{Subheading}
-\author{Oskar Schöldström}
-\date{\the\year}
+\input{chapters/chapter_1}
 
-\programme{Informationsteknik}
-\identification{1234}
-\level{Examensarbete}
-\supervisor{Hanne Karlsson}
-\keywords{cdn, javascript}
-
-\maketitle
-
-%% }}}
-%% Abstract {{{
-
-\begin{abstract}{swedish}
-a  a \\
-\end{abstract}
-
-\title{Trolo}\programme{Information Technology}\level{Degree Thesis}
-\begin{abstract}{english}
-a  a \\
-\end{abstract}
-
-\title{Suomeksi}\programme{Suomeksi}\level{Degree Thesis}
-\begin{abstract}{finnish}
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas molestie, nisi sed consectetur tincidunt, ante libero euismod nulla, eget commodo ligula purus eu nibh. Ut enim risus, congue sed viverra ut, tempor vel velit. Quisque consectetur tincidunt scelerisque. Donec nec mollis leo. Donec laoreet purus a massa ultrices egestas. Ut quis neque nisi. In hac habitasse platea dictumst. Suspendisse suscipit, ante eget venenatis molestie, elit nulla aliquam ligula, sit amet consectetur tortor magna eu ipsum. Pellentesque tempor tincidunt arcu, eget ultrices lorem commodo a.
-\end{abstract}
-
-%% }}}
-%% Tables {{{
-
-\tableofcontents
-
-\thispagestyle{empty}
-\listoftables
-\listoffigures
-\clearpage
-
-%% }}}
-%% Chapters {{{
-
-\section{Dolor sit amer}
-
-\subsection{ipsum dolor}
-
-\subsubsection{ipsum dolor}
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas molestie, nisi sed consectetur tincidunt, ante libero euismod nulla, eget commodo ligula purus eu nibh. Ut enim risus, congue sed viverra ut, tempor vel velit. Quisque consectetur tincidunt scelerisque. Donec nec mollis leo. Donec laoreet purus a massa ultrices egestas. Ut quis neque nisi. In hac habitasse platea dictumst. Suspendisse suscipit, ante eget venenatis molestie, elit nulla aliquam ligula, sit amet consectetur tortor magna eu ipsum. Pellentesque tempor tincidunt arcu, eget ultrices lorem commodo a.
-
-\subsection{leo commodo}
-
-Duis dignissim mauris quis leo commodo nec vulputate elit euismod. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Quisque ullamcorper elit justo. Pellentesque nec massa urna, ut ullamcorper lacus. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Pellentesque vel elit libero. Aenean magna elit, placerat pulvinar sodales id, aliquam eget dolor. Phasellus tincidunt eleifend orci ut ornare. Etiam semper placerat auctor. Sed dictum dui eu augue venenatis sit amet elementum risus mattis.
-
-Maecenas odio erat, placerat sit amet ultricies sed, vulputate sed nisl. Etiam tempus magna quis arcu vestibulum eu pharetra dui gravida. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin eget luctus est. Quisque odio eros, dictum in bibendum non, interdum et odio. Donec fermentum convallis nibh eget interdum. Phasellus placerat placerat justo, vel sagittis velit viverra molestie. Proin tincidunt ultrices risus, at imperdiet ante lobortis in. In hac habitasse platea dictumst. Mauris sed neque orci, nec tincidunt lacus. Phasellus sodales purus ut erat tempor lacinia. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse erat erat, tincidunt et aliquet a, ultrices tincidunt quam. Nam suscipit aliquet enim, ut tempus leo semper eu. Nunc dignissim elit tincidunt est auctor quis volutpat leo vulputate.
-
-\section{Dolor sit amer}
-
-\cite{website:zoompfcdns} Maecenas odio erat, placerat sit amet \cite{test}ultricies sed, vulputate sed nisl. Etiam tempus magna quis arcu vestibulum eu pharetra dui gravida. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin eget luctus est. Quisque odio eros, dictum in bibendum non, interdum et odio. Donec fermentum convallis nibh eget interdum. Phasellus placerat placerat justo, vel sagittis velit viverra molestie. Proin tincidunt ultrices risus, at imperdiet ante lobortis in. In hac habitasse platea dictumst. Mauris sed neque orci, nec tincidunt lacus. Phasellus sodales purus ut erat tempor lacinia. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse erat erat, tincidunt et aliquet a, ultrices tincidunt quam. Nam suscipit aliquet enim, ut tempus leo semper eu. Nunc dignissim elit tincidunt est auctor quis volutpat leo vulputate.
-
-\begin{table}[ht]
-  \begin{tabular}{ | l | p{2cm} | }
-    \hline
-    asda & aa \\ \hline
-    asda & aa \\ \hline
-  \end{tabular}
-  \caption{My table}
-  \label{tab:myfirsttable}
-\end{table}
-
-\begin{figure}[ht]
-  \caption{My figure}
-  \includegraphics[width=5cm]{logo.pdf}
-\end{figure}
-
-%% }}}
-%% Bibliography {{{
-
-\bibliography{example}
-
-%% }}}
+\input{pages/bibliography}
+\input{pages/appendix}
 
 \end{document}
