@@ -1,43 +1,52 @@
+% vim: set tw=78:ts=2:sw=2:et:fdm=marker:wrap
+
 \documentclass[twoside,emptyfirstpagenumber,swedish]{../thesis}
 
 \begin{document}
 
+%% Preamble {{{
+
 \title{Tittel på examensarbete}
 \subheading{Subheading}
-\level{Examensarbete}
 \author{Oskar Schöldström}
 \date{\the\year}
 
+\programme{Informationsteknik}
 \identification{1234}
+\level{Examensarbete}
 \supervisor{Hanne Karlsson}
 \keywords{cdn, javascript}
-\programme{Informationsteknik}
 
 \maketitle
+
+%% }}}
+%% Abstract {{{
 
 \begin{abstract}{swedish}
 a  a \\
 \end{abstract}
 
-\title{Trolo}
-\programme{Information Technology}
-\level{Degree Thesis}
+\title{Trolo}\programme{Information Technology}\level{Degree Thesis}
 \begin{abstract}{english}
 a  a \\
 \end{abstract}
 
-\title{Suomeksi}
-\programme{Suomeksi}
-\level{Degree Thesis}
+\title{Suomeksi}\programme{Suomeksi}\level{Degree Thesis}
 \begin{abstract}{finnish}
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas molestie, nisi sed consectetur tincidunt, ante libero euismod nulla, eget commodo ligula purus eu nibh. Ut enim risus, congue sed viverra ut, tempor vel velit. Quisque consectetur tincidunt scelerisque. Donec nec mollis leo. Donec laoreet purus a massa ultrices egestas. Ut quis neque nisi. In hac habitasse platea dictumst. Suspendisse suscipit, ante eget venenatis molestie, elit nulla aliquam ligula, sit amet consectetur tortor magna eu ipsum. Pellentesque tempor tincidunt arcu, eget ultrices lorem commodo a.
 \end{abstract}
+
+%% }}}
+%% Tables {{{
 
 \maketoc
 
 \listoftables
 
 \listoffigures
+
+%% }}}
+%% Chapters {{{
 
 \section{Dolor sit amer}
 
@@ -56,7 +65,7 @@ Maecenas odio erat, placerat sit amet ultricies sed, vulputate sed nisl. Etiam t
 
 \cite{website:zoompfcdns} Maecenas odio erat, placerat sit amet \cite{test}ultricies sed, vulputate sed nisl. Etiam tempus magna quis arcu vestibulum eu pharetra dui gravida. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin eget luctus est. Quisque odio eros, dictum in bibendum non, interdum et odio. Donec fermentum convallis nibh eget interdum. Phasellus placerat placerat justo, vel sagittis velit viverra molestie. Proin tincidunt ultrices risus, at imperdiet ante lobortis in. In hac habitasse platea dictumst. Mauris sed neque orci, nec tincidunt lacus. Phasellus sodales purus ut erat tempor lacinia. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse erat erat, tincidunt et aliquet a, ultrices tincidunt quam. Nam suscipit aliquet enim, ut tempus leo semper eu. Nunc dignissim elit tincidunt est auctor quis volutpat leo vulputate.
 
-\begin{table}[h]
+\begin{table}[ht]
   \begin{tabular}{ | l | p{2cm} | }
     \hline
     asda & aa \\ \hline
@@ -66,11 +75,16 @@ Maecenas odio erat, placerat sit amet ultricies sed, vulputate sed nisl. Etiam t
   \label{tab:myfirsttable}
 \end{table}
 
-\begin{figure}[h]
+\begin{figure}[ht]
   \caption{My figure}
   \includegraphics[width=5cm]{logo.pdf}
 \end{figure}
 
+%% }}}
+%% Bibliography {{{
+
 \bibliography{example}
+
+%% }}}
 
 \end{document}

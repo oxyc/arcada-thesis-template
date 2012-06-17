@@ -1,4 +1,4 @@
-% vim: set tw=78:ts=2:sw=2:et:fdm=marker:fmr={{{{{,}}}}}:wrap
+% vim: tw=78:ts=2:sw=2:et:fdm=marker:wrap
 
 %%
 %% This is file `thesis.cls',
@@ -22,7 +22,7 @@
 \ProvidesClass{thesis}
   [2012/06/12 Document class for Arcada thesis]
 
-%% Preamble {{{{{
+%% Preamble {{{
 
 %% Load packages
 \LoadClass{article}
@@ -108,8 +108,8 @@
 \fi
 \ProcessOptions\relax
 
-% }}}}}
-%% Language {{{{{
+% }}}
+%% Language {{{
 
 \newcommand{\defaultlanguage}[1]{\gdef\@defaultlanguage{#1}}
 \newcommand{\setdefaultlanguage}{%
@@ -129,8 +129,8 @@
 }
 \setdefaultlanguage
 
-%% }}}}}
-%% Localization  {{{{{
+%% }}}
+%% Localization  {{{
 
 \addto\captionsfinnish{ %
   \def\sDegreeThesis    {Degree Thesis}%
@@ -184,8 +184,8 @@
   \def\sSwedish         {Svenska}%
 }
 
-%% }}}}}
-%% Basic page layout {{{{{
+%% }}}
+%% Basic page layout {{{
 
 \geometry{
   top=1in,
@@ -209,8 +209,8 @@
 
 %\titleformat{\section}{\LARGE\bf\MakeUppercase\fontfamily{phv}\selectfont}{\thesection}{1em}{}
 
-%% }}}}}
-%% Values passed through commands {{{{{
+%% }}}
+%% Values passed through commands {{{
 
 \newcommand{\university}[1]     {\gdef\@university{#1}}
 \newcommand{\level}[1]          {\gdef\@level{#1}}
@@ -238,8 +238,8 @@
 \else \thesisLanguage{\sEnglish}
 \fi\fi\fi
 
-%% }}}}}
-%% Background bar {{{{{
+%% }}}
+%% Background bar {{{
 
 \definecolor{orange}{RGB}          {247,149,70}
 \definecolor{orangeSaturated}{RGB} {202,162,130}
@@ -259,8 +259,8 @@
   }
 }
 
-% }}}}}
-%% Title {{{{{
+% }}}
+%% Title {{{
 
 \renewcommand{\maketitle}{\
   \AddToShipoutPicture*{\backgroundbar}
@@ -288,8 +288,8 @@
     \@date\\
   \end{flushright}%
 }
-%% }}}}}
-%% Tabel of Contents {{{{{
+%% }}}
+%% Tabel of Contents {{{
 
 % Make dots more compact
 \renewcommand\@dotsep{0}
@@ -334,8 +334,8 @@
   \newpage
 }
 
-%% }}}}}
-%% Abstract {{{{{
+%% }}}
+%% Abstract {{{
 
 \newcommand{\coljoin}[1]{\multicolumn{2}{ !{\VRule[2pt]} l !{\VRule[2pt]} }{#1}}
 \newcommand{\thickrule}{\specialrule{2pt}{0pt}{0pt}}
@@ -380,7 +380,12 @@
     \pagestyle{empty}
     \newpage
 }
-%% }}}}}
+%% }}}
+%% Bibliography {{{
+
+\bibliographystyle{plain}
+
+%% }}}
 
 \endinput
 %%
