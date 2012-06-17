@@ -362,8 +362,10 @@
 % Append section titles with dots
 \renewcommand{\cftsecdotsep}{\cftdotsep}
 
-\newcommand{\maketoc}{
-  \tableofcontents
+% Override main commands
+\let\stdl@tableofcontents\tableofcontents
+\renewcommand*{\tableofcontents}{
+  \stdl@tableofcontents
   \newpage
 }
 
@@ -417,6 +419,14 @@
 %% Bibliography {{{
 
 \bibliographystyle{plain}
+
+\let\stdl@bibliography\bibliography
+\renewcommand*{\bibliography}[1]{
+  \newpage
+  \thispagestyle{empty}
+  \stdl@bibliography{#1}
+}
+
 
 %% }}}
 
