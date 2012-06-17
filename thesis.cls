@@ -237,23 +237,23 @@
 %% Values passed through commands {{{
 
 \newcommand{\university}[1]     {\gdef\@university{#1}}
+\newcommand{\programme}[1]      {\gdef\@programme{#1}}
 \newcommand{\level}[1]          {\gdef\@level{#1}}
 \newcommand{\subheading}[1]     {\gdef\@subheading{#1}}
-\newcommand{\programme}[1]      {\gdef\@programme{#1}}
 \newcommand{\thesisLanguage}[1] {\gdef\@thesisLanguage{#1}}
 \newcommand{\identification}[1] {\gdef\@identification{#1}}
 \newcommand{\supervisor}[1]     {\gdef\@supervisor{#1}}
 \newcommand{\commissionedBy}[1] {\gdef\@commissionedBy{#1}}
-\newcommand{\keywords}[1]       {\gdef\@keywords{#1}}
+\newcommand{\dateAcceptance}[1] {\gdef\@dateAcceptance{#1}}
 
 \university{Arcada}
-\subheading{}
-\level{}
 \programme{}
+\level{}
+\subheading{}
 \identification{}
 \supervisor{}
 \commissionedBy{}
-\keywords{}
+\dateAcceptance{}
 
 % Set some languagespecific values
 \if@finnish
@@ -398,14 +398,14 @@
     \renewcommand{\arraystretch}{1.2}
     \begin{tabularx}{\textwidth}{ !{\vthickrule} p{5cm} | X !{\vthickrule} }
       \thickrule
-      \coljoin{\MakeUppercase\@level}         \\ \hline
+      \coljoin{\MakeUppercase\level}          \\ \hline
       \coljoin{\@university}                  \\ \hline
       \coljoin{}                              \\ \hline
-      \sDegreeProgramme    & \@programme      \\ \hline
+      \sDegreeProgramme    & \programme       \\ \hline
       \coljoin{}                              \\ \hline
       \sIdentification     & \@identification \\ \hline
       \sAuthor             & \@author         \\ \hline
-      \sTitle              & \@title          \\ \hline
+      \sTitle              & \title           \\ \hline
       \sSupervisor         & \@supervisor     \\ \hline
       \coljoin{}                              \\ \hline
       \sCommissionedBy     & \@commissionedBy \\ \hline
@@ -419,10 +419,10 @@
     \vskip -7px%
     \begin{tabularx}{\textwidth}{ !{\vthickrule} p{5cm} | X !{\vthickrule} }
       \thickrule
-      \sKeywords           & \@keywords         \\ \hline
+      \sKeywords           & \keywords          \\ \hline
       \sPageCount          & \pageref{LastPage} \\ \hline
       \sLanguage           & \@thesisLanguage   \\ \hline
-      \sDateAcceptance     &                    \\ \thickrule
+      \sDateAcceptance     & \@dateAcceptance   \\ \thickrule
     \end{tabularx}
     \setdefaultlanguage
     \pagestyle{empty}
