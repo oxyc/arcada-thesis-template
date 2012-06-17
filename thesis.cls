@@ -25,7 +25,7 @@
 %% Preamble {{{
 
 %% Load packages
-\LoadClass{article}
+\LoadClass[a4paper,12pt]{article}
 \RequirePackage{latexsym}
 \RequirePackage[utf8]{inputenc}
 \RequirePackage[T1]{fontenc}
@@ -47,66 +47,17 @@
 \newif\if@finnish
 \newif\if@swedish
 \newif\if@english
-\newif\if@emptyfirstpagenumber
 
 \DeclareOption{finnish}{\@finnishtrue}
 \DeclareOption{swedish}{\@swedishtrue}
 \DeclareOption{english}{\@englishtrue}
-\DeclareOption{emptyfirstpagenumber}{\@emptyfirstpagenumbertrue}
 
 % Look for images in a couple of places
 \graphicspath{{./}{../}{./images/}{../images/}}
 
 % Pass stuff through to article but remember if we did so we can use arcadas
 % defaults otherwise.
-
-\newif\if@defaulttypesize
-\newif\if@defaultpaper
-\newif\if@defaulttitlepage
-\@defaulttypesizetrue
-\@defaultpapertrue
-\@defaulttitlepagetrue
-
-\DeclareOption{10pt}{
-  \@defaulttypesizefalse
-  \PassOptionsToClass{10pt}{article}}
-\DeclareOption{11pt}{
-  \@defaulttypesizefalse
-  \PassOptionsToClass{11pt}{article}}
-
-\DeclareOption{a5paper}{
-  \@defaultpaperfalse
-  \PassOptionsToClass{a5paper}{article}}
-\DeclareOption{b5paper}{
-  \@defaultpaperfalse
-  \PassOptionsToClass{b5paper}{article}}
-\DeclareOption{letterpaper}{
-  \@defaultpaperfalse
-  \PassOptionsToClass{letterpaper}{article}}
-\DeclareOption{legalpaper}{
-  \@defaultpaperfalse
-  \PassOptionsToClass{legalpaper}{article}}
-\DeclareOption{executivepaper}{
-  \@defaultpaperfalse
-  \PassOptionsToClass{executivepaper}{article}}
-
-\DeclareOption{notitlepage}{
-  \@defaulttitlepagefalse
-  \PassOptionsToClass{notitlepage}{article}}
-
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{article}}
-
-% Use defaults if not otherwise specified
-\ProcessOptions\relax
-\if@defaulttypesize
-  \PassOptionsToClass{12pt}{article}
-\fi
-\if@defaultpaper
-  \PassOptionsToClass{a4paper}{article}
-\fi
-\if@defaulttitlepage
-  \PassOptionsToClass{titlepage}{article}
-\fi
 \ProcessOptions\relax
 
 % }}}
