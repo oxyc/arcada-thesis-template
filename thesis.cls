@@ -437,8 +437,8 @@
   \newpage
   \thispagestyle{empty}
   \stdl@bibliography{#1}
+  \addcontentsline{toc}{section}{\refname}
 }
-
 
 %% }}}
 
