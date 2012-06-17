@@ -145,61 +145,67 @@
 %% Localization  {{{
 
 \addto\captionsenglish{%
-  \def\sDegreeThesis    {Degree Thesis}%
-  \def\sDegreeProgramme {Degree Programme:}%
-  \def\sIdentification  {Identification number:}%
-  \def\sAuthor          {Author:}%
-  \def\sTitle           {Title:}%
-  \def\sSupervisor      {Supervisor (Arcada):}%
-  \def\sCommissionedBy  {Commissioned by:}%
-  \def\sAbstract        {Abstract:}%
-  \def\sKeywords        {Keywords:}%
-  \def\sPageCount       {Number of pages:}%
-  \def\sLanguage        {Language:}%
-  \def\sDateAcceptance  {Date of acceptance:}%
-  \def\sFinnish         {Finnish}%
-  \def\sEnglish         {English}%
-  \def\sSwedish         {Swedish}%
-  \def\sFigure          {Figure}%
-  \def\sTable           {Table}%
+  \def\sDegreeThesis           {Degree Thesis}%
+  \def\sDegreeProgramme        {Degree Programme:}%
+  \def\sIdentification         {Identification number:}%
+  \def\sAuthor                 {Author:}%
+  \def\sTitle                  {Title:}%
+  \def\sSupervisor             {Supervisor (Arcada):}%
+  \def\sCommissionedBy         {Commissioned by:}%
+  \def\sAbstract               {Abstract:}%
+  \def\sKeywords               {Keywords:}%
+  \def\sPageCount              {Number of pages:}%
+  \def\sLanguage               {Language:}%
+  \def\sDateAcceptance         {Date of acceptance:}%
+  \def\sFinnish                {Finnish}%
+  \def\sEnglish                {English}%
+  \def\sSwedish                {Swedish}%
+  \def\sFigure                 {Figure}%
+  \def\sTable                  {Table}%
+  \renewcommand\listfigurename {Figures}%
+  \renewcommand\listtablename  {Tables}%
 }
 \addto\captionsswedish{%
-  \def\sDegreeThesis    {Examensarbete}%
-  \def\sDegreeProgramme {Utbildningsprogram:}%
-  \def\sIdentification  {Identifikationsnummer:}%
-  \def\sAuthor          {Författare:}%
-  \def\sTitle           {Arbetets namn:}%
-  \def\sSupervisor      {Handledare (Arcada):}%
-  \def\sCommissionedBy  {Uppdragsgivare:}%
-  \def\sAbstract        {Sammandrag:}%
-  \def\sKeywords        {Nyckelord:}%
-  \def\sPageCount       {Sidantal:}%
-  \def\sLanguage        {Språk:}%
-  \def\sDateAcceptance  {Datum för godkännande:}%
-  \def\sFinnish         {Finska}%
-  \def\sEnglish         {Engelska}%
-  \def\sSwedish         {Svenska}%
-  \def\sFigure          {Figur}%
-  \def\sTable           {Tabell}%
+  \def\sDegreeThesis           {Examensarbete}%
+  \def\sDegreeProgramme        {Utbildningsprogram:}%
+  \def\sIdentification         {Identifikationsnummer:}%
+  \def\sAuthor                 {Författare:}%
+  \def\sTitle                  {Arbetets namn:}%
+  \def\sSupervisor             {Handledare (Arcada):}%
+  \def\sCommissionedBy         {Uppdragsgivare:}%
+  \def\sAbstract               {Sammandrag:}%
+  \def\sKeywords               {Nyckelord:}%
+  \def\sPageCount              {Sidantal:}%
+  \def\sLanguage               {Språk:}%
+  \def\sDateAcceptance         {Datum för godkännande:}%
+  \def\sFinnish                {Finska}%
+  \def\sEnglish                {Engelska}%
+  \def\sSwedish                {Svenska}%
+  \def\sFigure                 {Figur}%
+  \def\sTable                  {Tabell}%
+  \renewcommand\listfigurename {Figurer}%
+  \renewcommand\listtablename  {Tabeller}%
 }
-\addto\captionsfinnish{ %
-  \def\sDegreeThesis    {Opinnäyte}%
-  \def\sDegreeProgramme {Koulutusohjelma:}%
-  \def\sIdentification  {Tunnistenumero:}%
-  \def\sAuthor          {Tekijä:}%
-  \def\sTitle           {Työn nimi:}%
-  \def\sSupervisor      {Työn ohjaaja (Arcada):}%
-  \def\sCommissionedBy  {Toimeksiantaja:}%
-  \def\sAbstract        {Tiivistelmä:}%
-  \def\sKeywords        {Avainsanat:}%
-  \def\sPageCount       {Sivumäärä:}%
-  \def\sLanguage        {Kieli:}%
-  \def\sDateAcceptance  {Hyväksymispäivämäärä:}%
-  \def\sFinnish         {Suomi}%
-  \def\sEnglish         {Englanti}%
-  \def\sSwedish         {Ruotsi}%
-  \def\sFigure          {Figuuri}%
-  \def\sTable           {Taulukko}%
+\addto\captionsfinnish{%
+  \def\sDegreeThesis           {Opinnäyte}%
+  \def\sDegreeProgramme        {Koulutusohjelma:}%
+  \def\sIdentification         {Tunnistenumero:}%
+  \def\sAuthor                 {Tekijä:}%
+  \def\sTitle                  {Työn nimi:}%
+  \def\sSupervisor             {Työn ohjaaja (Arcada):}%
+  \def\sCommissionedBy         {Toimeksiantaja:}%
+  \def\sAbstract               {Tiivistelmä:}%
+  \def\sKeywords               {Avainsanat:}%
+  \def\sPageCount              {Sivumäärä:}%
+  \def\sLanguage               {Kieli:}%
+  \def\sDateAcceptance         {Hyväksymispäivämäärä:}%
+  \def\sFinnish                {Suomi}%
+  \def\sEnglish                {Englanti}%
+  \def\sSwedish                {Ruotsi}%
+  \def\sFigure                 {Figuuri}%
+  \def\sTable                  {Taulukko}%
+  \renewcommand\listfigurename {Figuurit}%
+  \renewcommand\listtablename  {Taulukkot}%
 }
 
 %% }}}
