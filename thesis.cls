@@ -39,6 +39,7 @@
 \RequirePackage{booktabs}
 \RequirePackage{array}
 \RequirePackage{xifthen}
+\RequirePackage{lastpage} % Get page count
 \RequirePackage{setspace} % Line spacing
 \RequirePackage{titlesec} % Customize section titles
 \RequirePackage[titles]{tocloft} % Customize ToC
@@ -397,7 +398,7 @@
     \renewcommand{\arraystretch}{1.2}
     \begin{tabularx}{\textwidth}{ !{\vthickrule} p{5cm} | X !{\vthickrule} }
       \thickrule
-      \coljoin{\MakeUppercase\@level}         \\ \hline% todo uppercase
+      \coljoin{\MakeUppercase\@level}         \\ \hline
       \coljoin{\@university}                  \\ \hline
       \coljoin{}                              \\ \hline
       \sDegreeProgramme    & \@programme      \\ \hline
@@ -418,10 +419,10 @@
     \vskip -7px%
     \begin{tabularx}{\textwidth}{ !{\vthickrule} p{5cm} | X !{\vthickrule} }
       \thickrule
-      \sKeywords           & \@keywords       \\ \hline
-      \sPageCount          & ..               \\ \hline %todo automagic
-       \sLanguage          & \@thesisLanguage \\ \hline %todo language
-      \sDateAcceptance     &                  \\ \thickrule
+      \sKeywords           & \@keywords         \\ \hline
+      \sPageCount          & \pageref{LastPage} \\ \hline
+      \sLanguage           & \@thesisLanguage   \\ \hline
+      \sDateAcceptance     &                    \\ \thickrule
     \end{tabularx}
     \setdefaultlanguage
     \pagestyle{empty}
