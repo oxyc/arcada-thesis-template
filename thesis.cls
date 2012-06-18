@@ -45,59 +45,142 @@
 \RequirePackage{setspace} % Line spacing
 \RequirePackage{titlesec} % Customize section titles
 \RequirePackage[titles]{tocloft} % Customize ToC
+\RequirePackage{listings} % Code
+\RequirePackage[parfill]{parskip} %
+\RequirePackage{natbib} %
 
 \newif\ifisFinnish
 \newif\ifisSwedish
 \newif\ifisEnglish
+\newif\ifisCode
 
 \DeclareOption{finnish}{\isFinnishtrue}
 \DeclareOption{swedish}{\isSwedishtrue}
 \DeclareOption{english}{\isEnglishtrue}
-
-% Look for images in a couple of places
-\graphicspath{{./}{../}{./images/}{../images/}}
+\DeclareOption{code}{\isCodetrue}
 
 % Pass stuff through to article but remember if we did so we can use arcadas
 % defaults otherwise.
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{article}}
 \ProcessOptions\relax
 
+% Look for images in a couple of places
+\graphicspath{{./}{../}{./images/}{../images/}}
+
 % }}}
-%% Basic page layout {{{
-\geometry{
+%% Code {{{
+
+\definecolor{purple}{rgb}{0.5,0,0.35}
+\definecolor{red}{rgb}{0.6,0,0}
+\lstset{%
+  language=PHP,%
+  basicstyle=\footnotesize\ttfamily,%
+  numbers=left,%
+  stepnumber=1,%
+  numberstyle=\tiny\color{gray},%
+  keywordstyle=\color{purple}\bfseries,%
+  stringstyle=\color{red},%
+  numbersep=5pt,%
+  showspaces=false,%
+  showstringspaces=false,%
+  showtabs=false,%
+  frame=single,%
+  rulecolor=\color{black},%
+  tabsize=2,%
+  captionpos=b,%
+  breaklines=true,%
+  breakatwhitespace=false,%
+  title=\lstname,%
+  morekeywords=function%
+}
+
+%% }}}
+%% Layout and Typography {{{
+
+\geometry{%
+% Top and bottom margin uses 2.5cm.
   top=2.5cm,
+  bottom=3.4cm, % 2.5cm + 0.9cm.
+% Left and right margin used 3cm.
   left=3cm,
   right=3cm,
-  bottom=3.4cm, % 2.5cm + 0.9cm
+% The footer has a height of 0.9cm.
   nohead,
   footskip=0.9cm}
+
+% No paragraph indentation.
 \setlength{\parindent}{0pt}
-\setlength{\parskip}{1ex}
+
+% One empty.
+\setlength{\parskip}{\baselineskip}
+
+% Line height 1.5.
 \setstretch{1.5}
+
+% Use plain page numbers in the footer.
 \pagestyle{plain}
+
+% Use arabic numerals for page numbers.
 \pagenumbering{arabic}
+
+% Level 1 titles use uppercased 17pt bold instead pf 14pt as the specification
+% states.
 \titleformat{\section}{%
   \Large\bf\fontfamily{phv}\selectfont}{\thesection}{1em}{\MakeUppercase}
+
+% Level 2 titles use 17pt bold instead pf 14pt as the specification states.
 \titleformat{\subsection}{%
   \Large\bf\fontfamily{phv}\selectfont}{\thesubsection}{1em}{}
+
+% Level 3 titles use 14pt bold instead pf 12pt as the specification states.
 \titleformat{\subsubsection}{%
   \large\bf\fontfamily{phv}\selectfont}{\thesubsubsection}{1em}{}
 
+% Titles has 24pt spacing above and 12pt spacing beneath. However as
+% paragraphs should use a \blanklineskip beneath and 0pt above, we need to
+% tailor this a bit by looking at the example provided.
+\titlespacing*{\section}{0pt}{18pt}{-9pt}
+\titlespacing*{\subsection}{0pt}{18pt}{-9pt}
+\titlespacing*{\subsubsection}{0pt}{18pt}{-9pt}
+
+% Caption styles arent specified further than that they should be italic.
+% We define our own style which is aligned to the left with a size of 10pt
 \captionsetup[table]{%
   position=top, labelsep=period,%
   singlelinecheck=false, justification=justified,% align left
   textfont=it, labelfont=it, font=footnotesize}
-
 \captionsetup[figure]{%
   position=bottom, labelsep=period,%
   singlelinecheck=false, justification=justified,% align left
   textfont=it, labelfont=it, font=footnotesize}
 
+% Citations
+
+% Use 10pt and a 1.5 lineheight even though the specification tells us to use
+% 1.
+\renewenvironment{quote}{%
+  \list{}{%
+    \onehalfspacing\footnotesize\leftmargin0.5cm}
+  \item\relax}{%
+    \endlist}
+
+%% }}}
+%% Colors {{{
+
+% Used for the background
+\definecolor{orange}{RGB}          {247,149,70}
+\definecolor{orangeSaturated}{RGB} {202,162,130}
+\definecolor{gray}{RGB}            {241,241,241}
+\definecolor{white}{RGB}           {255,255,255}
+
 %% }}}
 %% Language {{{
 
+% As we need to calculate the width of the localized word `table` as this is
+% used as an offset in the LoT. Same issue for the LoF.
 \newlength{\figurelength}
 \newlength{\tablelength}
+
 \newcommand{\setdefaultlanguage}{%
   \ifisEnglish
     \selectlanguage{english}
@@ -197,10 +280,6 @@
 %% }}}
 %% Background bar {{{
 
-\definecolor{orange}{RGB}          {247,149,70}
-\definecolor{orangeSaturated}{RGB} {202,162,130}
-\definecolor{gray}{RGB}            {241,241,241}
-\definecolor{white}{RGB}           {255,255,255}
 \newcommand\cbox[2]{%
   \colorbox{#1}{\parbox[b][\paperheight]{#2}{\vfill\hfill}}%
 }
@@ -223,7 +302,7 @@
 % title page to be printed first
 \addtolength\textheight{3cm}
 
-\renewcommand{\maketitle}{
+\renewcommand{\maketitle}{%
   \AddToShipoutPicture*{\backgroundbar}
   \begin{adjustwidth}{-0.5cm}{}\begin{spacing}{2.0}
     \vspace*{-1.75cm}
@@ -231,8 +310,10 @@
 
     \vspace*{6.35cm}
 
+    % Title of the document is 20pt bold
     {\LARGE\bf\fontfamily{phv}\selectfont \TITLE}
 
+    % Subheading of the document is 17pt
     {\Large \SUBHEADING}
 
     \vspace{1.7cm}
@@ -254,23 +335,21 @@
   \addtolength\textheight{-3cm} % Reset to original textheight
 }
 %% }}}
-%% ToC / LoF / LoT {{{
-% Don't show page numbering.
+%% Tables (tocloft) {{{
+
+% Don't show page numbering on the table pages
 \addtocontents{toc}{\protect\thispagestyle{empty}}
 \addtocontents{lof}{\protect\thispagestyle{empty}}
 \addtocontents{lot}{\protect\thispagestyle{empty}}
 
-% Make dots more compact
-% \renewcommand\@dotsep{0}
-
-% Style LoF
-\setlength{\cftfigindent}{0cm} % Remove indent
+% LoF entries are numbered with `Figure ~Ñumber.`
+\setlength{\cftfigindent}{0cm} % Remove indentation
 \setlength{\cftfignumwidth}{\figurelength}
 \renewcommand*\cftfigpresnum{\sFigure~}
 \renewcommand{\cftfigaftersnum}{.~}
 
-% Style LoT
-\setlength{\cfttabindent}{0cm} % Remove indent
+% LoF entries are numbered with `Table ~Ñumber.`
+\setlength{\cfttabindent}{0cm} % Remove indentation
 \setlength{\cfttabnumwidth}{\tablelength}
 \renewcommand*\cfttabpresnum{\sTable~}
 \renewcommand{\cfttabaftersnum}{.~}
@@ -363,8 +442,8 @@
       \thickrule
       \sKeywords           & \KEYWORDS          \\ \hline
       \sPageCount          & \pageref{LastPage} \\ \hline
-      \sLanguage           & \LANGUAGE   \\ \hline
-      \sDateAcceptance     & \DATEACCEPTANCE   \\ \thickrule
+      \sLanguage           & \LANGUAGE          \\ \hline
+      \sDateAcceptance     & \DATEACCEPTANCE    \\ \thickrule
     \end{tabularx}
     \setdefaultlanguage
     \pagestyle{empty}
@@ -373,16 +452,16 @@
 %% }}}
 %% Bibliography {{{
 
-\bibliographystyle{plain}
+%\bibliographystyle{bibliography}
 
-\makeatletter
-\let\stdl@bibliography\bibliography
-\renewcommand*{\bibliography}[1]{
-  \newpage
-  \thispagestyle{empty}
-  \stdl@bibliography{#1}
-  \addcontentsline{toc}{section}{\refname}
-}
-\makeatother
+% Begin the bibliography on a new page and add it to the ToC.
+% \let\stdbibliography\bibliography
+% \renewcommand*{\bibliography}[1]{
+%   \newpage
+%   \thispagestyle{empty}
+%   \stdbibliography{#1}
+%   \addcontentsline{toc}{section}{\refname}
+% }
+% \makeatother
 
 %% }}}
