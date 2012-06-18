@@ -46,13 +46,13 @@
 \RequirePackage{titlesec} % Customize section titles
 \RequirePackage[titles]{tocloft} % Customize ToC
 
-\newif\if@finnish
-\newif\if@swedish
-\newif\if@english
+\newif\ifisFinnish
+\newif\ifisSwedish
+\newif\ifisEnglish
 
-\DeclareOption{finnish}{\@finnishtrue}
-\DeclareOption{swedish}{\@swedishtrue}
-\DeclareOption{english}{\@englishtrue}
+\DeclareOption{finnish}{\isFinnishtrue}
+\DeclareOption{swedish}{\isSwedishtrue}
+\DeclareOption{english}{\isEnglishtrue}
 
 % Look for images in a couple of places
 \graphicspath{{./}{../}{./images/}{../images/}}
@@ -98,19 +98,18 @@
 
 \newlength{\figurelength}
 \newlength{\tablelength}
-\newcommand{\defaultlanguage}[1]{\gdef\@defaultlanguage{#1}}
 \newcommand{\setdefaultlanguage}{%
-  \if@english
+  \ifisEnglish
     \selectlanguage{english}
     \setlength{\figurelength}{\widthof{Figuuri~99.~}}
     \setlength{\tablelength}{\widthof{Taulukko~99.~}}
   \else
-    \if@swedish
+    \ifisSwedish
       \selectlanguage{swedish}
       \setlength{\figurelength}{\widthof{Figur~99.~}}
       \setlength{\tablelength}{\widthof{Tabell~99.~}}
     \else
-      \if@finnish
+      \ifisFinnish
         \selectlanguage{finnish}
         \setlength{\figurelength}{\widthof{Figuuri~99.~}}
         \setlength{\tablelength}{\widthof{Taulukko~99.~}}
@@ -215,15 +214,15 @@
 % }}}
 %% Values passed through commands {{{
 
-\newcommand{\university}[1]     {\gdef\@university{#1}}
-\newcommand{\programme}[1]      {\gdef\@programme{#1}}
-\newcommand{\level}[1]          {\gdef\@level{#1}}
-\newcommand{\subheading}[1]     {\gdef\@subheading{#1}}
-\newcommand{\thesisLanguage}[1] {\gdef\@thesisLanguage{#1}}
-\newcommand{\identification}[1] {\gdef\@identification{#1}}
-\newcommand{\supervisor}[1]     {\gdef\@supervisor{#1}}
-\newcommand{\commissionedBy}[1] {\gdef\@commissionedBy{#1}}
-\newcommand{\dateAcceptance}[1] {\gdef\@dateAcceptance{#1}}
+\newcommand{\university}[1]     {\gdef\UNIVERSITY{#1}}
+\newcommand{\programme}[1]      {\gdef\PROGRAMME{#1}}
+\newcommand{\level}[1]          {\gdef\LEVEL{#1}}
+\newcommand{\subheading}[1]     {\gdef\SUBHEADING{#1}}
+\newcommand{\thesisLanguage}[1] {\gdef\THESISLANGUAGE{#1}}
+\newcommand{\identification}[1] {\gdef\IDENTIFICATION{#1}}
+\newcommand{\supervisor}[1]     {\gdef\SUPERVISOR{#1}}
+\newcommand{\commissionedBy}[1] {\gdef\COMMISSIONEDBY{#1}}
+\newcommand{\dateAcceptance}[1] {\gdef\DATEACCEPTANCE{#1}}
 
 \university{Arcada}
 \programme{}
@@ -235,11 +234,11 @@
 \dateAcceptance{}
 
 % Set some languagespecific values
-\if@finnish
+\ifisFinnish
   \thesisLanguage{\sFinnish}
-\else\if@english
+\else\ifisEnglish
   \thesisLanguage{\sEnglish}
-\else\if@swedish
+\else\ifisSwedish
   \thesisLanguage{\sSwedish}
 \else
   \thesisLanguage{\sEnglish}
@@ -261,22 +260,22 @@
 
     \vspace*{6.35cm}
 
-    {\LARGE\bf\fontfamily{phv}\selectfont \@title}
+    {\LARGE\bf\fontfamily{phv}\selectfont \TITLE}
 
-    {\Large \@subheading}
+    {\Large \SUBHEADING}
 
     \vspace{1.7cm}
 
     \begin{large} % 14pt
-      \@author
+      \AUTHOR
 
       \vspace*{\fill}
       \begin{adjustwidth}{}{-2.5cm}
         \begin{flushright}
           \onehalfspacing
-          \@level\\
-          \@programme\\
-          \@date\\
+          \LEVEL\\
+          \PROGRAMME\\
+          \DATE\\
         \end{flushright}%
       \end{adjustwidth}%
     \end{large}
@@ -306,11 +305,14 @@
 \renewcommand{\cfttabaftersnum}{.~}
 
 % Change space between numbering and ToC titles
+\makeatletter
 \renewcommand*\l@section{\@dottedtocline{3}{0cm}{1cm}}
 \renewcommand*\l@subsection{\@dottedtocline{3}{0.39cm}{1.2cm}}
 \renewcommand*\l@subsubsection{\@dottedtocline{3}{0.78cm}{1.5cm}}
+\makeatother
 
 % Style section titles
+\makeatletter
 \let\stdl@section\l@section
 \renewcommand*{\l@section}[2]{%
   \doublespacing%
@@ -336,17 +338,20 @@
     \it\fontsize{11pt}{0pt}\fontfamily{phv}\selectfont{#1}}{%
     \it\fontsize{11pt}{0pt}\fontfamily{phv}\selectfont{#2}}%
 }
+\makeatother
 
 % Append section titles with dots
 \renewcommand{\cftsecdotsep}{\cftdotsep}
 
 % Override main commands
+\makeatletter
 \let\stdtableofcontents\tableofcontents
 \renewcommand*{\tableofcontents}{
   \setdefaultlanguage
   \stdtableofcontents
   \newpage
 }
+\makeatother
 
 %% }}}
 %% Abstract {{{
@@ -364,31 +369,31 @@
     \renewcommand{\arraystretch}{1.1}
     \begin{tabularx}{\textwidth}{ !{\vthickrule} p{5cm} | X !{\vthickrule} }
       \thickrule
-      \coljoin{\MakeUppercase\level}          \\ \hline
-      \coljoin{\@university}                  \\ \hline
+      \coljoin{\MakeUppercase\LEVEL}          \\ \hline
+      \coljoin{\UNIVERSITY}                   \\ \hline
       \coljoin{}                              \\ \hline
-      \sDegreeProgramme    & \programme       \\ \hline
+      \sDegreeProgramme    & \PROGRAMME       \\ \hline
       \coljoin{}                              \\ \hline
-      \sIdentification     & \@identification \\ \hline
-      \sAuthor             & \@author         \\ \hline
-      \sTitle              & \title           \\ \hline
-      \sSupervisor         & \@supervisor     \\ \hline
+      \sIdentification     & \IDENTIFICATION  \\ \hline
+      \sAuthor             & \AUTHOR          \\ \hline
+      \sTitle              & \TITLE           \\ \hline
+      \sSupervisor         & \SUPERVISOR      \\ \hline
       \coljoin{}                              \\ \hline
-      \sCommissionedBy     & \@commissionedBy \\ \hline
+      \sCommissionedBy     & \COMMISSIONEDBY  \\ \hline
       \coljoin{}                              \\ \thickrule
       \coljoin{\sAbstract}                    \\ %todo do this in a nicer way
-    \end{tabularx}
+    \end{tabularx}%
     \vskip -7px%
     \tabularx{\textwidth}{ !{\vthickrule} X !{\vthickrule} }%
-}{
+}{%
     \endtabularx
     \vskip -7px%
     \begin{tabularx}{\textwidth}{ !{\vthickrule} p{5cm} | X !{\vthickrule} }
       \thickrule
-      \sKeywords           & \keywords          \\ \hline
+      \sKeywords           & \KEYWORDS          \\ \hline
       \sPageCount          & \pageref{LastPage} \\ \hline
-      \sLanguage           & \@thesisLanguage   \\ \hline
-      \sDateAcceptance     & \@dateAcceptance   \\ \thickrule
+      \sLanguage           & \THESISLANGUAGE   \\ \hline
+      \sDateAcceptance     & \DATEACCEPTANCE   \\ \thickrule
     \end{tabularx}
     \setdefaultlanguage
     \pagestyle{empty}
@@ -399,6 +404,7 @@
 
 \bibliographystyle{plain}
 
+\makeatletter
 \let\stdl@bibliography\bibliography
 \renewcommand*{\bibliography}[1]{
   \newpage
@@ -406,8 +412,6 @@
   \stdl@bibliography{#1}
   \addcontentsline{toc}{section}{\refname}
 }
+\makeatother
 
 %% }}}
-
-\endinput
-%%
