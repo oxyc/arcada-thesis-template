@@ -101,20 +101,24 @@
 \newcommand{\setdefaultlanguage}{%
   \ifisEnglish
     \selectlanguage{english}
+    \def\LANGUAGE{\sEnglish}
     \setlength{\figurelength}{\widthof{Figuuri~99.~}}
     \setlength{\tablelength}{\widthof{Taulukko~99.~}}
   \else
     \ifisSwedish
       \selectlanguage{swedish}
+      \def\LANGUAGE{\sSwedish}
       \setlength{\figurelength}{\widthof{Figur~99.~}}
       \setlength{\tablelength}{\widthof{Tabell~99.~}}
     \else
       \ifisFinnish
         \selectlanguage{finnish}
+        \def\LANGUAGE{\sFinnish}
         \setlength{\figurelength}{\widthof{Figuuri~99.~}}
         \setlength{\tablelength}{\widthof{Taulukko~99.~}}
       \else
         \selectlanguage{english}
+        \def\LANGUAGE{\sEnglish}
         \setlength{\figurelength}{\widthof{Figuuri~99.~}}
         \setlength{\tablelength}{\widthof{Taulukko~99.~}}
       \fi
@@ -212,39 +216,6 @@
 }
 
 % }}}
-%% Values passed through commands {{{
-
-\newcommand{\university}[1]     {\gdef\UNIVERSITY{#1}}
-\newcommand{\programme}[1]      {\gdef\PROGRAMME{#1}}
-\newcommand{\level}[1]          {\gdef\LEVEL{#1}}
-\newcommand{\subheading}[1]     {\gdef\SUBHEADING{#1}}
-\newcommand{\thesisLanguage}[1] {\gdef\THESISLANGUAGE{#1}}
-\newcommand{\identification}[1] {\gdef\IDENTIFICATION{#1}}
-\newcommand{\supervisor}[1]     {\gdef\SUPERVISOR{#1}}
-\newcommand{\commissionedBy}[1] {\gdef\COMMISSIONEDBY{#1}}
-\newcommand{\dateAcceptance}[1] {\gdef\DATEACCEPTANCE{#1}}
-
-\university{Arcada}
-\programme{}
-\level{}
-\subheading{}
-\identification{}
-\supervisor{}
-\commissionedBy{}
-\dateAcceptance{}
-
-% Set some languagespecific values
-\ifisFinnish
-  \thesisLanguage{\sFinnish}
-\else\ifisEnglish
-  \thesisLanguage{\sEnglish}
-\else\ifisSwedish
-  \thesisLanguage{\sSwedish}
-\else
-  \thesisLanguage{\sEnglish}
-\fi\fi\fi
-
-%% }}}
 %% Title {{{
 
 % As the ubuntu repository doesn't contain the latest version of geometry which
@@ -392,7 +363,7 @@
       \thickrule
       \sKeywords           & \KEYWORDS          \\ \hline
       \sPageCount          & \pageref{LastPage} \\ \hline
-      \sLanguage           & \THESISLANGUAGE   \\ \hline
+      \sLanguage           & \LANGUAGE   \\ \hline
       \sDateAcceptance     & \DATEACCEPTANCE   \\ \thickrule
     \end{tabularx}
     \setdefaultlanguage
