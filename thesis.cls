@@ -373,16 +373,16 @@
 %% }}}
 %% Bibliography {{{
 
-\bibliographystyle{plain}
+%\bibliographystyle{bibliography}
 
-\makeatletter
-\let\stdl@bibliography\bibliography
-\renewcommand*{\bibliography}[1]{
-  \newpage
-  \thispagestyle{empty}
-  \stdl@bibliography{#1}
-  \addcontentsline{toc}{section}{\refname}
-}
-\makeatother
+% Begin the bibliography on a new page and add it to the ToC.
+% \let\stdbibliography\bibliography
+% \renewcommand*{\bibliography}[1]{
+%   \newpage
+%   \thispagestyle{empty}
+%   \stdbibliography{#1}
+%   \addcontentsline{toc}{section}{\refname}
+% }
+% \makeatother
 
 %% }}}
