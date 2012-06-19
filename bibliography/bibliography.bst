@@ -1519,7 +1519,8 @@ FUNCTION {begin.bib}
   write$ newline$
   "\providecommand{\selectlanguage}[1]{\relax}"
   write$ newline$
-  "\input{babelbst.tex}" write$ newline$
+% todo path
+  "\input{../bibliography/babelbst.tex}" write$ newline$
   "\newcommand{\Capitalize}[1]{\uppercase{#1}}" write$ newline$
   "\newcommand{\capitalize}[1]{\expandafter\Capitalize#1}" write$ newline$
   "\providecommand{\bibAnnoteFile}[1]{%"

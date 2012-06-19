@@ -452,16 +452,30 @@
 %% }}}
 %% Bibliography {{{
 
-%\bibliographystyle{bibliography}
+% Because of a compatability issue between natbib and older versions of makebst
+% we need to renew these commands not to trigger the following error:
+%   ! Extra }, or forgotten \endgroup.
+%   \par ...m \@noitemerr {\@@par }\fi \else {\@@par }
+% @see http://www.latex-community.org/forum/viewtopic.php?f=19&t=10955
 
-% Begin the bibliography on a new page and add it to the ToC.
-% \let\stdbibliography\bibliography
-% \renewcommand*{\bibliography}[1]{
-%   \newpage
-%   \thispagestyle{empty}
-%   \stdbibliography{#1}
-%   \addcontentsline{toc}{section}{\refname}
-% }
-% \makeatother
+\renewcommand{\bibAnnoteFile}[1]{%
+\IfFileExists{#1}{\begin{quotation}\noindent\texts c{Key:} #1\\
+\textsc{Annotation:}\ \input{#1}\end{quotation}}{}}
+
+\renewcommand{\bibAnnote}[2]{%
+\begin{quotation}\noindent\textsc{Key:} #1\\
+\textsc{Annotation:}\ #2\end{quotation}}
+
+% todo path
+\bibliographystyle{../bibliography/bibliography}
+
+\let\stdbibliography\bibliography
+\renewcommand*{\bibliography}[1]{
+  \newpage
+  \thispagestyle{empty}
+  \stdbibliography{#1}
+  \addcontentsline{toc}{section}{\refname}
+}
+\makeatother
 
 %% }}}
