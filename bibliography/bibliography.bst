@@ -4,7 +4,7 @@
 %%
 %% The original source files were:
 %%
-%% merlin.mbs  (with options: `babel,ay,nat,lang,annote,nm-revf,ed-rev,jnrlst,nmlm,x2,m2,keyxyr,blkyear,dt-beg,yr-per,tit-it,thtit-a,vnum-cm,volp-com,jwdpg,pp-last,jwdvol,num-xser,ser-vol,pg-bk,pre-pub,blk-com,blknt,pp,abr,ednx,xedn,amper,and-xcom,xand,etal-xc,revdata,eprint,url,url-blk,nfss,')
+%% merlin.mbs  (with options: `babel,ay,nat,lang,vonx,nm-revf,jnrlst,aunm-semi,nmlm,x90,x9,m2,keyxyr,blkyear,dt-beg,yr-per,note-yr,atit-u,vnum-nr,volp-com,jwdpg,pp-last,jwdvol,num-xser,ser-vol,pg-bk,add-pub,pre-pub,blk-com,in-col,pp,ed,abr,xedn,amper,and-xcom,etal-xc,revdata,eprint,url,url-blk,nfss,')
 %% ----------------------------------------
 %% ***  ***
 %% 
@@ -54,7 +54,6 @@
 
 ENTRY
   { address
-    annote
     archive
     author
     booktitle
@@ -131,11 +130,6 @@ FUNCTION {fin.entry}
 { add.period$
   write$
   newline$
-  annote missing$
-    { "\bibAnnoteFile{" cite$ * "}" * write$ newline$ }
-    { "\bibAnnote{" cite$ * "}{" * annote * "}" * write$ newline$
-    }
-  if$
 }
 
 FUNCTION {new.block}
@@ -221,10 +215,10 @@ FUNCTION {bbl.etal}
 { "\bbletal{}"}
 
 FUNCTION {bbl.editors}
-{ "\bbleditors{}" }
+{ "\bbleds{}" }
 
 FUNCTION {bbl.editor}
-{ "\bbleditor{}" }
+{ "\bbled{}" }
 
 FUNCTION {bbl.edby}
 { "\bbledby{}" }
@@ -410,25 +404,28 @@ FUNCTION {format.names}
         {
           nameptr #2
           #1 + =
-          numnames #2
+          numnames #9
+          #90 +
           > and
             { "others" 't :=
               #1 'namesleft := }
             'skip$
           if$
           namesleft #1 >
-            { ", " * t * }
+            { "; " * t * }
             {
               s nameptr "{ll}" format.name$ duplicate$ "others" =
                 { 't := }
                 { pop$ }
               if$
-              "," *
               t "others" =
                 {
                   " " * bbl.etal *
                 }
-                { " " * t * }
+                {
+                  "\&"
+                  space.word * t *
+                }
               if$
             }
           if$
@@ -443,7 +440,48 @@ FUNCTION {format.names}
 }
 FUNCTION {format.names.ed}
 {
-  format.names
+  'bibinfo :=
+  duplicate$ empty$ 'skip$ {
+  's :=
+  "" 't :=
+  #1 'nameptr :=
+  s num.names$ 'numnames :=
+  numnames 'namesleft :=
+    { namesleft #0 > }
+    { s nameptr
+      "{ff~}{vv~}{ll}{, jj}"
+      format.name$
+      bibinfo bibinfo.check
+      't :=
+      nameptr #1 >
+        {
+          namesleft #1 >
+            { "; " * t * }
+            {
+              s nameptr "{ll}" format.name$ duplicate$ "others" =
+                { 't := }
+                { pop$ }
+              if$
+              t "others" =
+                {
+
+                  " " * bbl.etal *
+                }
+                {
+                  "\&"
+                  space.word * t *
+                }
+              if$
+            }
+          if$
+        }
+        't
+      if$
+      nameptr #1 + 'nameptr :=
+      namesleft #1 - 'namesleft :=
+    }
+  while$
+  } if$
 }
 FUNCTION {format.key}
 { empty$
@@ -514,13 +552,9 @@ FUNCTION {format.note}
 
 FUNCTION {format.title}
 { title
-  duplicate$ empty$ 'skip$
-    { "t" change.case$ }
-  if$
   "title" bibinfo.check
   duplicate$ empty$ 'skip$
     {
-      emphasize
       select.language
     }
   if$
@@ -539,7 +573,8 @@ FUNCTION {format.full.names}
         {
           nameptr #2
           #1 + =
-          numnames #2
+          numnames #9
+          #90 +
           > and
             { "others" 't :=
               #1 'namesleft := }
@@ -666,6 +701,7 @@ FUNCTION {n.dashify}
 
 FUNCTION {word.in}
 { bbl.in
+  ":" *
   " " * }
 
 FUNCTION {format.date}
@@ -832,7 +868,7 @@ FUNCTION {format.vol.num.pages}
         'skip$
       if$
       swap$
-      ", " swap$ *
+      ", " bbl.nr * number tie.or.space.prefix pop$ * swap$ *
     }
   if$ *
 }
@@ -921,14 +957,14 @@ FUNCTION {format.org.or.pub}
   address empty$ t empty$ and
     'skip$
     {
+      address "address" bibinfo.check *
       t empty$
-        { address "address" bibinfo.check *
-        }
-        { t *
-          address empty$
+        'skip$
+        { address empty$
             'skip$
-            { ", " * address "address" bibinfo.check * }
+            { ": " * }
           if$
+          t *
         }
       if$
     }
@@ -964,7 +1000,6 @@ FUNCTION {article}
     { format.journal.pages }
     { format.journal.eid }
   if$
-  new.sentence
   format.note output
   format.eprint output
   format.url output
@@ -997,7 +1032,6 @@ FUNCTION {book}
   if$
   format.edition output
   format.book.pages output
-  new.sentence
   format.note output
   format.eprint output
   format.url output
@@ -1013,7 +1047,6 @@ FUNCTION {booklet}
   howpublished "howpublished" bibinfo.check output
   address "address" bibinfo.check output
   format.book.pages output
-  new.sentence
   format.note output
   format.eprint output
   format.url output
@@ -1050,7 +1083,6 @@ FUNCTION {inbook}
   if$
   format.edition output
   format.pages "pages" output.check
-  new.sentence
   format.note output
   format.eprint output
   format.url output
@@ -1077,7 +1109,6 @@ FUNCTION {incollection}
     }
   if$
   format.pages "pages" output.check
-  new.sentence
   format.note output
   format.eprint output
   format.url output
@@ -1105,7 +1136,6 @@ FUNCTION {inproceedings}
     }
   if$
   format.pages "pages" output.check
-  new.sentence
   format.note output
   format.eprint output
   format.url output
@@ -1122,7 +1152,6 @@ FUNCTION {manual}
   organization "organization" bibinfo.check output
   address "address" bibinfo.check output
   format.edition output
-  new.sentence
   format.note output
   format.eprint output
   format.url output
@@ -1135,12 +1164,11 @@ FUNCTION {mastersthesis}
   author format.key output
   format.date "year" output.check
   date.block
-  format.title
+  format.btitle
   "title" output.check
   bbl.mthesis format.thesis.type output.nonnull
   school "school" bibinfo.warn output
   address "address" bibinfo.check output
-  new.sentence
   format.note output
   format.eprint output
   format.url output
@@ -1155,7 +1183,6 @@ FUNCTION {misc}
   date.block
   format.title output
   howpublished "howpublished" bibinfo.check output
-  new.sentence
   format.note output
   format.eprint output
   format.url output
@@ -1167,12 +1194,11 @@ FUNCTION {phdthesis}
   author format.key output
   format.date "year" output.check
   date.block
-  format.title
+  format.btitle
   "title" output.check
   bbl.phdthesis format.thesis.type output.nonnull
   school "school" bibinfo.warn output
   address "address" bibinfo.check output
-  new.sentence
   format.note output
   format.eprint output
   format.url output
@@ -1194,7 +1220,6 @@ FUNCTION {proceedings}
       format.publisher.address output
     }
   if$
-  new.sentence
   format.note output
   format.eprint output
   format.url output
@@ -1212,7 +1237,6 @@ FUNCTION {techreport}
   format.tr.number output.nonnull
   institution "institution" bibinfo.warn output
   address "address" bibinfo.check output
-  new.sentence
   format.note output
   format.eprint output
   format.url output
@@ -1226,7 +1250,6 @@ FUNCTION {unpublished}
   format.date "year" output.check
   date.block
   format.title "title" output.check
-  new.sentence
   format.note "note" output.check
   format.eprint output
   format.url output
@@ -1331,7 +1354,7 @@ FUNCTION {calc.label}
   year duplicate$ empty$
   short.list key field.or.null = or
      { pop$ "" }
-     { purify$ #-1 #4 substring$ }
+     'skip$
   if$
   *
   'label :=
@@ -1345,13 +1368,14 @@ FUNCTION {sort.format.names}
   numnames 'namesleft :=
     { namesleft #0 > }
     { s nameptr
-      "{vv{ } }{ll{ }}{  ff{ }}{  jj{ }}"
+      "{ll{ }}{  ff{ }}{  jj{ }}"
       format.name$ 't :=
       nameptr #1 >
         {
           nameptr #2
           #1 + =
-          numnames #2
+          numnames #9
+          #90 +
           > and
             { "others" 't :=
               #1 'namesleft := }
@@ -1519,22 +1543,9 @@ FUNCTION {begin.bib}
   write$ newline$
   "\providecommand{\selectlanguage}[1]{\relax}"
   write$ newline$
-% todo path
   "\input{../bibliography/babelbst.tex}" write$ newline$
   "\newcommand{\Capitalize}[1]{\uppercase{#1}}" write$ newline$
   "\newcommand{\capitalize}[1]{\expandafter\Capitalize#1}" write$ newline$
-  "\providecommand{\bibAnnoteFile}[1]{%"
-  write$ newline$
-  "  \IfFileExists{#1}{\begin{quotation}\noindent\textsc{Key:} #1\\"
-  write$ newline$
-  "  \textsc{Annotation:}\ \input{#1}\end{quotation}}{}}"
-  write$ newline$
-  "\providecommand{\bibAnnote}[2]{%"
-  write$ newline$
-  "  \begin{quotation}\noindent\textsc{Key:} #1\\"
-  write$ newline$
-  "  \textsc{Annotation:}\ #2\end{quotation}}"
-  write$ newline$
   "\providecommand{\eprint}[2][]{\url{#2}}"
   write$ newline$
 }

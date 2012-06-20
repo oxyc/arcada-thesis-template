@@ -1,6 +1,6 @@
 %% Driver file to produce bibliography.bst from merlin.mbs
 %% Generated with makebst, version 4.1 (2003/09/08)
-%% Produced on 2012/06/18 at 19:49
+%% Produced on 2012/06/20 at 20:16
 %% 
 \input docstrip
 
@@ -64,9 +64,9 @@ End of customized bst file
 %------\ans=l(==lang)-------
 %>>LANGUAGE FIELD
 %<<ANNOTATIONS:
-%   %: (def) No annotations will be recognized
-  annote,%: Annotations in annote field or in .tex file of citekey name
-%------\ans=a(==annote)-------
+    %: (def) No annotations will be recognized
+% annote,%: Annotations in annote field or in .tex file of citekey name
+%------\ans=*(==)-------
 %>>ANNOTATIONS:
 %<<PRESENTATIONS:
     %: (def) Do not add presentation type for conference talks
@@ -93,9 +93,9 @@ End of customized bst file
 %------\ans=*(==)-------
 %>>ORDERING OF REFERENCES (if author-year citations)
 %<<ORDER ON VON PART (if not citation order)
-    %: (def) Sort on von part (de la Maire before Defoe)
-% vonx,%: Sort without von part (de la Maire after Mahone)
-%------\ans=*(==)-------
+%   %: (def) Sort on von part (de la Maire before Defoe)
+  vonx,%: Sort without von part (de la Maire after Mahone)
+%------\ans=x(==vonx)-------
 %>>ORDER ON VON PART (if not citation order)
 %<<AUTHOR NAMES:
 % ed-au,%: Full, surname last (John Frederick Smith)
@@ -112,9 +112,9 @@ End of customized bst file
 %------\ans=f(==nm-revf)-------
 %>>AUTHOR NAMES:
 %<<EDITOR NAMES IN COLLECTIONS (if author names reversed)
-%   %: (def) Editor names NOT reversed as edited by John James Smith
-  ed-rev,%: Editor names reversed just like authors'
-%------\ans=r(==ed-rev)-------
+    %: (def) Editor names NOT reversed as edited by John James Smith
+% ed-rev,%: Editor names reversed just like authors'
+%------\ans=*(==)-------
 %<<POSITION OF JUNIOR (if author names reversed)
   jnrlst,%: Junior comes last as Smith, John, Jr.
 %   %: (def) Junior between as Smith, Jr., John
@@ -127,10 +127,10 @@ End of customized bst file
 %------\ans=*(==)-------
 %>>JUNIOR PART IN THE CITATION (if author-year citations)
 %<<PUNCTUATION BETWEEN AUTHOR NAMES:
-    %: (def) Author names separated by commas 
-% aunm-semi,%: Names separated by semi-colon 
+%   %: (def) Author names separated by commas 
+  aunm-semi,%: Names separated by semi-colon 
 % aunm-sl,%: Names separated by slash /
-%------\ans=*(==)-------
+%------\ans=s(==aunm-semi)-------
 %>>PUNCTUATION BETWEEN AUTHOR NAMES:
 %<<ADJACENT REFERENCES WITH REPEATED NAMES:
     %: (def) Author/editor names always present 
@@ -144,7 +144,7 @@ End of customized bst file
   nmlm,%: Limited authors (et al replaces missing names)
 %------\ans=l(==nmlm)-------
 %>>NUMBER OF AUTHORS IN BIBLIOGRAPHY:
-    x2,%: Maximum of 2 authors
+    x90,x9,%: Maximum of 99 authors
     m2,%: Minimum of 2 authors
 %<<AUTHORS IN CITATIONS:
     %: (def) One author et al for three or more authors
@@ -284,20 +284,20 @@ End of customized bst file
 %------\ans=*(==)-------
 %>>DATE FONT:
 %<<TRUNCATE YEAR (if author-year citations)
-% note-yr,%: Year text full as 1990--1993 or `in press'
-    %: (def) Year truncated to last 4 digits
-%------\ans=t(==)-------
+  note-yr,%: Year text full as 1990--1993 or `in press'
+%   %: (def) Year truncated to last 4 digits
+%------\ans=*(==note-yr)-------
 %>>TRUNCATE YEAR (if author-year citations)
 %<<TITLE OF ARTICLE:
-%   %: (def) Title plain with no special font
-  tit-it,%: Title italic (\em)
+    %: (def) Title plain with no special font
+% tit-it,%: Title italic (\em)
 % tit-qq,qt-s,%: Title and punctuation in single quotes (`Title,' ..)
 % tit-qq,%: Title and punctuation in double quotes (``Title,'' ..)
 % tit-qq,qt-g,%: Title and punctuation in guillemets (<<Title,>> ..)
 % tit-qq,qt-s,qx,%: Title in single quotes (`Title', ..)
 % tit-qq,qx,%: Title in double quotes (``Title'', ..)
 % tit-qq,qt-g,qx,%: Title in guillemets (<<Title>>, ..)
-%------\ans=i(==tit-it)-------
+%------\ans=*(==)-------
 %>>TITLE OF ARTICLE:
 %<<COLLECTION/PROCEEDINGS TITLES (if quoted title)
 % bt-qq,%: Quote collection and proceedings titles too
@@ -305,9 +305,9 @@ End of customized bst file
 %------\ans=*(==bt-qq)-------
 %>>COLLECTION/PROCEEDINGS TITLES (if quoted title)
 %<<CAPITALIZATION OF ARTICLE TITLE:
-    %: (def) Sentence style (capitalize first word and those in braces)
-% atit-u,%: Title style (just as in bib entry)
-%------\ans=*(==)-------
+%   %: (def) Sentence style (capitalize first word and those in braces)
+  atit-u,%: Title style (just as in bib entry)
+%------\ans=t(==atit-u)-------
 %>>CAPITALIZATION OF ARTICLE TITLE:
 %<<ARTICLE TITLE PRESENT:
     %: (def) Article title present in journals and proceedings
@@ -325,10 +325,10 @@ End of customized bst file
 %------\ans=*(==)-------
 %>>JOURNAL NAME FONT:
 %<<THESIS TITLE:
-%   %: (def) Thesis titles like books 
-  thtit-a,%: Thesis title like article 
+    %: (def) Thesis titles like books 
+% thtit-a,%: Thesis title like article 
 % thtit-x,%: No thesis title 
-%------\ans=a(==thtit-a)-------
+%------\ans=*(==)-------
 %>>THESIS TITLE:
 %<<TECHNICAL REPORT TITLE:
     %: (def) Tech. report title like articles 
@@ -350,12 +350,12 @@ End of customized bst file
 %<<JOURNAL VOL AND NUMBER:
 %   %: (def) Journal vol(num) as 34(2)
 % vnum-sp,%: Journal vol (num) as 34 (2)
-  vnum-cm,%: Journal vol, num as 34, 2
-% vnum-nr,%: Journal vol, no. num as 34, no. 2
+% vnum-cm,%: Journal vol, num as 34, 2
+  vnum-nr,%: Journal vol, no. num as 34, no. 2
 % vnum-h,%: Journal vol, \# number as 34, \#2
 % vnum-b,%: Journal vol number as 34 2
 % vnum-x,%: Journal vol, without number as 34
-%------\ans=c(==vnum-cm)-------
+%------\ans=n(==vnum-nr)-------
 %>>JOURNAL VOL AND NUMBER:
 %<<VOLUME PUNCTUATION:
 %   %: (def) Volume with colon as vol(num):ppp
@@ -443,9 +443,9 @@ End of customized bst file
 %------\ans=p(==pg-bk)-------
 %>>TOTAL PAGES OF A BOOK:
 %<<PUBLISHER ADDRESS:
-    %: (def) Publisher, address as Harcourt, New York
-% add-pub,%: Address: Publisher as New York: Harcourt
-%------\ans=*(==)-------
+%   %: (def) Publisher, address as Harcourt, New York
+  add-pub,%: Address: Publisher as New York: Harcourt
+%------\ans=a(==add-pub)-------
 %>>PUBLISHER ADDRESS:
 %<<PUBLISHER IN PARENTHESES:
     %: (def) Publisher as normal block without parentheses
@@ -515,12 +515,12 @@ End of customized bst file
 % blk-tit,tit-col,%: Colon after titles of articles, books, etc else commas
 % blk-tita,%: Period after titles of articles else commas
 % blk-tita,tit-col,%: Colon after titles of articles else commas
-%------\ans=c(==blk-com)-------
+%------\ans=*(==)-------
 %>>PUNCTUATION BETWEEN SECTIONS (BLOCKS):
 %<<PUNCTUATION BEFORE NOTES (if not using \newblock)
 %   %: (def) Notes have regular punctuation like all other blocks
-  blknt,%: Notes preceded by period 
-%------\ans=p(==blknt)-------
+% blknt,%: Notes preceded by period 
+%------\ans=*(==)-------
 %>>PUNCTUATION BEFORE NOTES (if not using \newblock)
 %<<PUNCTUATION AFTER AUTHORS:
     %: (def) Author block normal with regular block punctuation
@@ -528,12 +528,12 @@ End of customized bst file
 %------\ans=*(==)-------
 %>>PUNCTUATION AFTER AUTHORS:
 %<<PUNCTUATION AFTER `IN':
-    %: (def) Space after `in' for incollection or inproceedings
-% in-col,%: Colon after `in' (as `In: ...')
+%   %: (def) Space after `in' for incollection or inproceedings
+  in-col,%: Colon after `in' (as `In: ...')
 % in-it,%: Italic `in' and space
 % in-col,in-it,%: Italic `in' and colon 
 % in-x,%: No word `in' for edited works
-%------\ans=*(==)-------
+%------\ans=c(==in-col)-------
 %>>PUNCTUATION AFTER `IN':
 %<<`IN' WITH JOURNAL NAMES (if using 'in' with collections)
     %: (def) No `in' before journal name 
@@ -551,9 +551,9 @@ End of customized bst file
 % ppx,%: `Page' omitted 
 %------\ans=a(==pp)-------
 %<<ABBREVIATE WORD `EDITORS':
-    %: (def) `Editor(s)' (no abbreviation)
-% ed,%: `Editor' abbreviated as ed. or eds.
-%------\ans=*(==)-------
+%   %: (def) `Editor(s)' (no abbreviation)
+  ed,%: `Editor' abbreviated as ed. or eds.
+%------\ans=a(==ed)-------
 %>>ABBREVIATE WORD `EDITORS':
 %<<OTHER ABBREVIATIONS:
 %   %: (def) No abbreviations of volume, edition, chapter, etc
@@ -561,9 +561,9 @@ End of customized bst file
 %------\ans=a(==abr)-------
 %>>OTHER ABBREVIATIONS:
 %<<ABBREVIATION FOR `EDITION' (if abbreviating words)
-%   %: (def) `Edition' abbreviated as `edn' 
-  ednx,%: `Edition' abbreviated as `ed' 
-%------\ans=a(==ednx)-------
+    %: (def) `Edition' abbreviated as `edn' 
+% ednx,%: `Edition' abbreviated as `ed' 
+%------\ans=*(==)-------
 %<<MONTHS WITH DOTS:
     %: (def) Months with dots as Jan.
 % mth-bare,%: Months without dots as Feb Mar
@@ -602,9 +602,9 @@ End of customized bst file
 %------\ans=*(==and-com-ed)-------
 %>>COMMA BEFORE `AND' EVEN FOR COLLECTION EDITORS (if using comma before `and' with authors)
 %<<NO `AND' IN REFERENCE LIST:
-%   %: (def) With `and' before last author in reference list
-  xand,%: No `and' as `Tom, Dick, Harry'
-%------\ans=x(==xand)-------
+    %: (def) With `and' before last author in reference list
+% xand,%: No `and' as `Tom, Dick, Harry'
+%------\ans=*(==)-------
 %>>NO `AND' IN REFERENCE LIST:
 %<<COMMA BEFORE `ET AL':
 %   %: (def) Comma before `et al' in reference list
