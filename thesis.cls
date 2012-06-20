@@ -468,12 +468,14 @@
 
 % todo path
 \bibliographystyle{../bibliography/bibliography}
+\setlength{\bibsep}{\baselineskip}
 
 \let\stdbibliography\bibliography
 \renewcommand*{\bibliography}[1]{
   \newpage
   \thispagestyle{empty}
-  \stdbibliography{#1}
+  {\singlespacing%
+    \stdbibliography{#1}}
   \addcontentsline{toc}{section}{\refname}
 }
 \makeatother
