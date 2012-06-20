@@ -1,13 +1,67 @@
-\section{Citing}
+\section{Bibliography}
 
-\verb+\citet{tpp}+ --- \citet{tpp} \\
-\verb+\citet*{tpp}+ --- \citet*{tpp} \\
-\verb+\citep{tpp}+ --- \citep{tpp} \\
-\verb+\citep[][s. 50]{tpp}+ --- \citep[][s. 50]{tpp} \\
-\verb+\citep*{tpp}+ --- \citep*{tpp} \\
-\verb+\citep[chap. 2]{tpp}+ --- \citep[chap. 2]{tpp} \\
-\verb+\citep[jfr][]{tpp}+ --- \citep[jfr][]{tpp} \\
-\verb+\citep[jfr][s. 50]{tpp}+ --- \citep[jfr][s. 50]{tpp} \\
-\verb+\citeauthor{tpp}+ --- \citeauthor{tpp} \\
-\verb+\citeauthor*{tpp}+ --- \citeauthor*{tpp} \\
-\verb+\citeyear{tpp}+ --- \citeyear{tpp}
+How it works in latex..
+
+\subsection{Citing}
+
+There are several ways to cite a reference, here's a complete list of all the
+availeble cite commands and their output.
+
+\verb+\citet{bj08}+ --- \citet{bj08} \\
+\verb+\citet*{bj08}+ --- \citet*{bj08} \\
+\verb+\citep{bj08}+ --- \citep{bj08} \\
+\verb+\citep[][s. 50]{bj08}+ --- \citep[][s. 50]{bj08} \\
+\verb+\citep*{bj08}+ --- \citep*{bj08} \\
+\verb+\citep[chap. 2]{bj08}+ --- \citep[chap. 2]{bj08} \\
+\verb+\citep[jfr][]{bj08}+ --- \citep[jfr][]{bj08} \\
+\verb+\citep[jfr][s. 50]{bj08}+ --- \citep[jfr][s. 50]{bj08} \\
+\verb+\citeauthor{bj08}+ --- \citeauthor{bj08} \\
+\verb+\citeauthor*{bj08}+ --- \citeauthor*{bj08} \\
+\verb+\citeyear{bj08}+ --- \citeyear{bj08}
+
+\nocite{bj08}
+\nocite{ma07}
+\nocite{bes08}
+\nocite{chr08}
+%\nocite{kk96} no author/editor
+\nocite{ms08}
+%\nocite{ss08} no author/editor
+\nocite{yo07} % if no editor/author add title as key for sorting
+\nocite{ue07}
+% \nocite{so93} unknown
+\nocite{jh08}
+\nocite{jk08}
+\nocite{js08a} % vol, should be number
+\nocite{js08b}
+\nocite{mb09}
+% \nocite{sd06} unknown
+% \nocite{vak04} unknown
+% \nocite{pc03} unknown
+% \nocite{eb09} unknown
+% \nocite{ne09} unknown
+% \nocite{oed09} unknown
+% \nocite{um09} unknown
+% \nocite{ff09} unknown
+\nocite{yf07}
+\nocite{es01}
+\nocite{ks08}
+\nocite{ea05}
+\nocite{ns03}
+\nocite{jp05}
+\nocite{ssh04}
+\nocite{fapp09}
+\nocite{kn09}
+
+\subsection{Adding references}
+
+Theory of the file. \\
+Running bibtex etc..
+
+\subsubsection{Example \.bib file}
+
+To help illustrate how to reference different kinds of works, you can have a
+look at this documents \emph{references.bib} file and compare it to the
+references at the end.
+
+% make into appendix
+\lstinputlisting{references.bib}
