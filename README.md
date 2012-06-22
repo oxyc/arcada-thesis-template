@@ -4,6 +4,22 @@
 
 ## Getting started
 
+### Dependencies
+
+- Base requirements
+
+  `sudo apt-get install texlive texlive-latex-extra texlive-lang-swedish texlive-lang-finnish`
+
+- Recommended packages (e.g. fancy fonts, syntaxchecker etc.).
+
+  `sudo apt-get install texlive-fonts-extra lacheck`
+
+### Installation
+
+`git clone https://github.com/oxyc/arcada-thesis-template.git`
+
+### Integrate with your own thesis document
+
 ...
 
 ## Features
