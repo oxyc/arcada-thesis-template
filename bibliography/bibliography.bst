@@ -548,6 +548,15 @@ FUNCTION {format.note}
     }
   if$
 }
+FUNCTION {format.howpublished}
+{ howpublished duplicate$ empty$
+  'skip$
+    {
+      pop$
+      "[" howpublished * "]" *
+    }
+  if$
+}
 
 FUNCTION {format.title}
 { title
@@ -1190,6 +1199,28 @@ FUNCTION {misc}
   format.url output
   fin.entry
 }
+
+FUNCTION {electronic}
+{ output.bibitem
+  author empty$
+    { format.title output
+      emphasize
+    }
+    { format.authors output.nonnull
+      emphasize
+      format.title output
+    }
+  if$
+  format.date "year" output.check
+  format.howpublished output
+  organization output
+  editor output
+  format.note output
+  format.eprint output
+  format.url output
+  fin.entry
+}
+
 FUNCTION {phdthesis}
 { output.bibitem
   format.authors "author" output.check
