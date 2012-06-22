@@ -261,6 +261,7 @@
   \def\sTable                  {Tabell}%
   \renewcommand\listfigurename {Figurer}%
   \renewcommand\listtablename  {Tabeller}%
+  \renewcommand{\pagecount}[2]{#1 #2}%
 }
 \addto\captionsfinnish{%
   \def\sDegreeThesis           {Opinnäyte}%
@@ -282,6 +283,7 @@
   \def\sTable                  {Taulukko}%
   \renewcommand\listfigurename {Figuurit}%
   \renewcommand\listtablename  {Taulukkot}%
+  \renewcommand{\pagecount}[2]{#1 #2}%
 }
 
 %% }}}
