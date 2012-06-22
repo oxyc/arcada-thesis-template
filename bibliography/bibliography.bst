@@ -4,7 +4,7 @@
 %%
 %% The original source files were:
 %%
-%% merlin.mbs  (with options: `babel,ay,nat,lang,vonx,nm-revf,jnrlst,aunm-semi,nmlm,x90,x9,m2,keyxyr,blkyear,dt-beg,yr-per,note-yr,atit-u,vnum-nr,volp-com,jwdpg,pp-last,jwdvol,num-xser,ser-vol,pg-bk,add-pub,pre-pub,blk-com,in-col,pp,ed,abr,xedn,amper,and-xcom,etal-xc,revdata,eprint,url,url-blk,nfss,')
+%% merlin.mbs  (with options: `babel,ay,nat,lang,vonx,nm-revf,jnrlst,aunm-semi,nmlm,x90,x9,m2,keyxyr,blkyear,dt-beg,yr-per,note-yr,atit-u,vnum-nr,volp-com,jwdpg,pp-last,jwdvol,num-xser,ser-vol,pg-bk,add-pub,pre-edn,blk-com,in-col,pp,ed,abr,xedn,amper,and-xcom,etal-xc,revdata,eprint,url,url-blk,nfss,')
 %% ----------------------------------------
 %% ***  ***
 %% 
@@ -1023,13 +1023,13 @@ FUNCTION {book}
   crossref missing$
     { format.bvolume output
       format.number.series output
+      format.edition output
       format.publisher.address output
     }
     {
       format.book.crossref output.nonnull
     }
   if$
-  format.edition output
   format.book.pages output
   format.note output
   format.eprint output
@@ -1070,17 +1070,17 @@ FUNCTION {inbook}
   format.btitle "title" output.check
   crossref missing$
     {
-      format.publisher.address output
       format.bvolume output
       format.chapter.pages "chapter and pages" output.check
       format.number.series output
+      format.edition output
+      format.publisher.address output
     }
     {
       format.chapter.pages "chapter and pages" output.check
       format.book.crossref output.nonnull
     }
   if$
-  format.edition output
   format.pages "pages" output.check
   format.note output
   format.eprint output
@@ -1097,11 +1097,11 @@ FUNCTION {incollection}
   format.title "title" output.check
   crossref missing$
     { format.in.ed.booktitle "booktitle" output.check
-      format.publisher.address output
       format.bvolume output
       format.number.series output
-      format.chapter.pages output
       format.edition output
+      format.chapter.pages output
+      format.publisher.address output
     }
     { format.incoll.inproc.crossref output.nonnull
       format.chapter.pages output
@@ -1122,14 +1122,14 @@ FUNCTION {inproceedings}
   format.title "title" output.check
   crossref missing$
     { format.in.ed.booktitle "booktitle" output.check
+      format.bvolume output
+      format.number.series output
       publisher empty$
         { format.organization.address output }
         { organization "organization" bibinfo.check output
           format.publisher.address output
         }
       if$
-      format.bvolume output
-      format.number.series output
     }
     { format.incoll.inproc.crossref output.nonnull
     }

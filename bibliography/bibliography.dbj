@@ -458,8 +458,8 @@ End of customized bst file
 %>>PUBLISHER IN PARENTHESES:
 %<<PUBLISHER POSITION:
 %   %: (def) Publisher after chapter, pages 
-  pre-pub,%: Publisher before chapter, pages 
-% pre-edn,%: Publisher after edition 
+%  pre-pub,%: Publisher before chapter, pages 
+  pre-edn,%: Publisher after edition 
 %------\ans=p(==pre-pub)-------
 %>>PUBLISHER POSITION:
 %<<ISBN NUMBER:
