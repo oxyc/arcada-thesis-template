@@ -1320,6 +1320,21 @@ FUNCTION {author.editor.key.label}
   if$
 }
 
+FUNCTION {author.title.key.label}
+{ author empty$
+    { title empty$
+        { key empty$
+            { cite$ #1 #3 substring$ }
+            'key
+          if$
+        }
+        'title
+      if$
+    }
+    { author format.lab.names }
+  if$
+}
+
 FUNCTION {editor.key.label}
 { editor empty$
     { key empty$
@@ -1338,7 +1353,7 @@ FUNCTION {calc.short.authors}
     'author.editor.key.label
     { type$ "proceedings" =
         'editor.key.label
-        'author.key.label
+        'author.title.key.label
       if$
     }
   if$
