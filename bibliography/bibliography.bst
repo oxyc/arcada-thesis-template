@@ -977,6 +977,10 @@ FUNCTION {format.organization.address}
 { organization "organization" bibinfo.check format.org.or.pub
 }
 
+FUNCTION {format.school.address}
+{ school "school" bibinfo.check format.org.or.pub
+}
+
 FUNCTION {article}
 { output.bibitem
   format.authors "author" output.check
@@ -1166,8 +1170,7 @@ FUNCTION {mastersthesis}
   format.btitle
   "title" output.check
   bbl.mthesis format.thesis.type output.nonnull
-  school "school" bibinfo.warn output
-  address "address" bibinfo.check output
+  format.school.address output
   format.note output
   format.eprint output
   format.url output
