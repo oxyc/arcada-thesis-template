@@ -1432,6 +1432,24 @@ FUNCTION {author.editor.sort}
     { author sort.format.names }
   if$
 }
+
+FUNCTION {author.title.sort}
+{ author empty$
+    { title empty$
+        { key empty$
+            { "to sort, need author, title, or key in " cite$ * warning$
+              ""
+            }
+            { key sortify }
+          if$
+        }
+        { title sort.format.title }
+      if$
+    }
+    { author sort.format.names }
+  if$
+}
+
 FUNCTION {editor.sort}
 { editor empty$
     { key empty$
@@ -1455,7 +1473,7 @@ FUNCTION {presort}
     'author.editor.sort
     { type$ "proceedings" =
         'editor.sort
-        'author.sort
+        'author.title.sort
       if$
     }
   if$
