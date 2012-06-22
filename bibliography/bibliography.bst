@@ -515,9 +515,8 @@ FUNCTION {format.editors}
   if$
 }
 FUNCTION {format.book.pages}
-{ pages "pages" bibinfo.check
-  duplicate$ empty$ 'skip$
-    { " " * bbl.pages * }
+{ pages duplicate$ empty$ 'skip$
+    { "\pagecount{" bbl.pages * "}{" * swap$ * "}" * }
   if$
 }
 FUNCTION {select.language}

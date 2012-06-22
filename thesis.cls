@@ -67,6 +67,11 @@
 % Look for images in a couple of places
 \graphicspath{{./}{../}{./images/}{../images/}}
 
+% Define a pagecount command which will be used in the bibtex bst to determine
+% the order of p. and the pagecount (i.e., s. 123 in Swedish, 123 p. in
+% English)
+\newcommand{\pagecount}[2]{#1 #2}
+
 % }}}
 %% Code {{{
 
@@ -233,6 +238,8 @@
   \def\sTable                  {Table}%
   \renewcommand\listfigurename {Figures}%
   \renewcommand\listtablename  {Tables}%
+  % Swap order of p. and the nubmer in english.
+  \renewcommand{\pagecount}[2]{#2 #1}%
 }
 \addto\captionsswedish{%
   \def\sDegreeThesis           {Examensarbete}%
