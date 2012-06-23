@@ -82,6 +82,7 @@ ENTRY
     url
     volume
     year
+    crew
   }
   {}
   { label extra.label sort.label short.list }
@@ -514,6 +515,7 @@ FUNCTION {format.editors}
     }
   if$
 }
+
 FUNCTION {format.book.pages}
 { pages duplicate$ empty$ 'skip$
     { "\pagecount{" bbl.pages * "}{" * swap$ * "}" * }
@@ -1213,8 +1215,8 @@ FUNCTION {electronic}
   if$
   format.date "year" output.check
   format.howpublished output
-  organization output
-  editor output
+  organization "organization" bibinfo.check output
+  crew "crew" bibinfo.check output
   format.note output
   format.eprint output
   format.url output
