@@ -49,19 +49,35 @@
 \RequirePackage[parfill]{parskip} %
 \RequirePackage{natbib} %
 
-\newif\ifisFinnish
-\newif\ifisSwedish
-\newif\ifisEnglish
-\newif\ifisCode
+% As we need to calculate the width of the localized word `table` as this is
+% used as an offset in the LoT. Same issue for the LoF.
+\newlength{\figurelength}
+\newlength{\tablelength}
 
-\DeclareOption{finnish}{\isFinnishtrue}
-\DeclareOption{swedish}{\isSwedishtrue}
-\DeclareOption{english}{\isEnglishtrue}
-\DeclareOption{code}{\isCodetrue}
+\DeclareOption{finnish}{
+  \def\LANGUAGE{\sFinnish}
+  \setlength{\figurelength}{\widthof{Figuuri~99.~}}
+  \setlength{\tablelength}{\widthof{Taulukko~99.~}}
+  % This gets called at begin{document} by bibtex
+  \main@language{finnish}%
+}
+\DeclareOption{swedish}{%
+  \def\LANGUAGE{\sSwedish}%
+  \setlength{\figurelength}{\widthof{Figur~99.~}}%
+  \setlength{\tablelength}{\widthof{Tabell~99.~}}%
+  \main@language{swedish}%
+}
+\DeclareOption{english}{%
+  \def\LANGUAGE{\sEnglish}%
+  \setlength{\figurelength}{\widthof{Figuuri~99.~}}%
+  \setlength{\tablelength}{\widthof{Taulukko~99.~}}%
+  \main@language{english}%
+}
 
 % Pass stuff through to article but remember if we did so we can use arcadas
 % defaults otherwise.
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{article}}
+\ExecuteOptions{swedish}
 \ProcessOptions\relax
 
 % Look for images in a couple of places
@@ -179,43 +195,6 @@
 \definecolor{white}{RGB}           {255,255,255}
 
 %% }}}
-%% Language {{{
-
-% As we need to calculate the width of the localized word `table` as this is
-% used as an offset in the LoT. Same issue for the LoF.
-\newlength{\figurelength}
-\newlength{\tablelength}
-
-\newcommand{\setdefaultlanguage}{%
-  \ifisEnglish
-    \selectlanguage{english}
-    \def\LANGUAGE{\sEnglish}
-    \setlength{\figurelength}{\widthof{Figuuri~99.~}}
-    \setlength{\tablelength}{\widthof{Taulukko~99.~}}
-  \else
-    \ifisSwedish
-      \selectlanguage{swedish}
-      \def\LANGUAGE{\sSwedish}
-      \setlength{\figurelength}{\widthof{Figur~99.~}}
-      \setlength{\tablelength}{\widthof{Tabell~99.~}}
-    \else
-      \ifisFinnish
-        \selectlanguage{finnish}
-        \def\LANGUAGE{\sFinnish}
-        \setlength{\figurelength}{\widthof{Figuuri~99.~}}
-        \setlength{\tablelength}{\widthof{Taulukko~99.~}}
-      \else
-        \selectlanguage{english}
-        \def\LANGUAGE{\sEnglish}
-        \setlength{\figurelength}{\widthof{Figuuri~99.~}}
-        \setlength{\tablelength}{\widthof{Taulukko~99.~}}
-      \fi
-    \fi
-  \fi
-}
-\setdefaultlanguage
-
-%% }}}
 %% Localization  {{{
 
 \addto\captionsenglish{%
@@ -238,8 +217,8 @@
   \def\sTable                  {Table}%
   \renewcommand\listfigurename {Figures}%
   \renewcommand\listtablename  {Tables}%
-  % Swap order of p. and the nubmer in english.
-  \renewcommand{\pagecount}[2]{#2 #1}%
+  % Swap order of p. and the number in english.
+  \renewcommand{\pagecount}[2] {#2 #1}%
 }
 \addto\captionsswedish{%
   \def\sDegreeThesis           {Examensarbete}%
@@ -261,7 +240,7 @@
   \def\sTable                  {Tabell}%
   \renewcommand\listfigurename {Figurer}%
   \renewcommand\listtablename  {Tabeller}%
-  \renewcommand{\pagecount}[2]{#1 #2}%
+  \renewcommand{\pagecount}[2] {#2 #1}%
 }
 \addto\captionsfinnish{%
   \def\sDegreeThesis           {Opinnäyte}%
@@ -283,7 +262,7 @@
   \def\sTable                  {Taulukko}%
   \renewcommand\listfigurename {Figuurit}%
   \renewcommand\listtablename  {Taulukkot}%
-  \renewcommand{\pagecount}[2]{#1 #2}%
+  \renewcommand{\pagecount}[2] {#1 #2}%
 }
 
 %% }}}
@@ -406,7 +385,6 @@
 \makeatletter
 \let\stdtableofcontents\tableofcontents
 \renewcommand*{\tableofcontents}{
-  \setdefaultlanguage
   \stdtableofcontents
   \newpage
 }
@@ -420,7 +398,7 @@
 \newcommand\VRule[1][\arrayrulewidth]{\vrule width #1}
 \newcommand{\vthickrule}{\vrule width 2pt}
 \renewenvironment{abstract}[1]{%
-  \ifthenelse{\isempty{#1}}{}{\selectlanguage{#1}}
+  \expandafter\otherlanguage\expandafter{#1}%
   \pagestyle{empty}
   \newpage
     \normalsize
@@ -454,7 +432,7 @@
       \sLanguage           & \LANGUAGE          \\ \hline
       \sDateAcceptance     & \DATEACCEPTANCE    \\ \thickrule
     \end{tabularx}
-    \setdefaultlanguage
+    \endotherlanguage
     \pagestyle{empty}
     \newpage
 }
