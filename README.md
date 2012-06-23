@@ -15,7 +15,7 @@
 - Recommended packages (e.g. fancy fonts, syntaxchecker etc.).
 
   ```
-  sudo apt-get install texlive-fonts-extra lacheck
+  sudo apt-get install texlive-fonts-extra lacheck texlive-bibtex-extra
   ```
 
 ### Installation
