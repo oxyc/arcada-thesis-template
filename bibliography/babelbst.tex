@@ -40,10 +40,13 @@
 \iflanguage{finnish}{\input{../bibliography/finnishbst}}{
   \iflanguage{english}{\input{../bibliography/englishbst}}{
     \iflanguage{swedish}{\input{../bibliography/swedishbst}}{
-      \input{finnbst}
+      \input{../bibliography/finnishbst}
     }
   }
 }
+\addto\captionsenglish{\input{../bibliography/englishbst}}%
+\addto\captionsfinnish{\input{../bibliography/finnishbst}}%
+\addto\captionsswedish{\input{../bibliography/swedishbst}}%
 \endinput
 %%
 %% End of file `merlin.tex'.

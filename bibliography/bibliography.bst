@@ -526,7 +526,7 @@ FUNCTION {select.language}
     'pop$
     { language empty$
         'skip$
-        { "{\selectlanguage{" language * "}" * swap$ * "}" * }
+        { "{\selectlanguage{" language * "}\hspace{-1em}" * swap$ * "\hspace{-1.2em}}" * }
       if$
     }
     if$
@@ -866,7 +866,9 @@ FUNCTION {format.vol.num.pages}
 { volume field.or.null
   duplicate$ empty$ 'skip$
     {
-      bbl.volume swap$ tie.or.space.prefix
+      bbl.volume
+      select.language
+      swap$ tie.or.space.prefix
       "volume" bibinfo.check
       * *
     }
