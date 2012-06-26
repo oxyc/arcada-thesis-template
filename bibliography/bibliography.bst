@@ -1265,32 +1265,79 @@ FUNCTION {misc}
   author format.key output
   format.date "year" output.check
   date.block
-  format.title output
-  howpublished "howpublished" bibinfo.check output
+  format.title output emphasize
+  format.howpublished output
+  new.block
   format.note output
   format.eprint output
-  format.url output
+  format.available output
+  format.retrieved output
   fin.entry
 }
 
 FUNCTION {electronic}
 { output.bibitem
   author empty$
-    { format.title output
-      emphasize
+    { format.title output emphasize
+      title format.key output
+      format.date "year" output.check
+      date.block
     }
-    { format.authors output.nonnull
-      emphasize
-      format.title output
+    { format.authors output
+      author format.key output
+      format.date "year" output.check
+      date.block
+      journal empty$
+        { format.title output emphasize }
+        { format.title output
+          journal output emphasize
+        }
+      if$
     }
   if$
-  format.date "year" output.check
+  format.bvolume output
+  format.number.series output
+  format.edition output
   format.howpublished output
   organization "organization" bibinfo.check output
-  crew "crew" bibinfo.check output
+  crew output
+  format.available output
+  format.retrieved output
   format.note output
   format.eprint output
-  format.url output
+  fin.entry
+}
+
+FUNCTION {online}
+{ output.bibitem
+  author empty$
+    { format.title output emphasize
+      title format.key output
+      format.date "year" output.check
+      date.block
+    }
+    { format.authors output
+      author format.key output
+      format.date "year" output.check
+      date.block
+      journal empty$
+        { format.title output emphasize }
+        { format.title output
+          journal output emphasize
+        }
+      if$
+    }
+  if$
+  format.bvolume output
+  format.number.series output
+  format.edition output
+  format.howpublished output
+  organization "organization" bibinfo.check output
+  crew output
+  format.available output
+  format.retrieved output
+  format.note output
+  format.eprint output
   fin.entry
 }
 
@@ -1303,11 +1350,14 @@ FUNCTION {phdthesis}
   format.btitle
   "title" output.check
   bbl.phdthesis format.thesis.type output.nonnull
-  school "school" bibinfo.warn output
-  address "address" bibinfo.check output
+  format.bvolume output
+  format.number.series output
+  format.edition output
+  format.school.address output
+  format.pages "pages" output.check
   format.note output
   format.eprint output
-  format.url output
+  format.available output
   format.retrieved output
   fin.entry
 }
