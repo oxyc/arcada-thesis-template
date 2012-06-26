@@ -558,7 +558,7 @@ FUNCTION {select.language}
     'pop$
     { language empty$
         'skip$
-        { "{\selectlanguage{" language * "}\hspace{-1em}" * swap$ * "\hspace{-1.2em}}" * }
+        { "{\selectlanguage{" language * "}" * swap$ * "}" * }
       if$
     }
     if$
@@ -774,7 +774,7 @@ FUNCTION {either.or.check}
 FUNCTION {format.bvolume}
 { volume empty$
     { "" }
-    { bbl.volume volume tie.or.space.prefix
+    { bbl.volume select.language volume tie.or.space.prefix
       "volume" bibinfo.check * *
       series "series" bibinfo.check
       duplicate$ empty$ 'pop$
