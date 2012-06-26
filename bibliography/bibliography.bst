@@ -83,6 +83,7 @@ ENTRY
     volume
     year
     crew
+    available
   }
   {}
   { label extra.label sort.label short.list }
@@ -233,6 +234,9 @@ FUNCTION {bbl.volume}
 FUNCTION {bbl.of}
 { "\bblof{}" }
 
+FUNCTION {bbl.available}
+{ "\bblavailable{}" }
+
 FUNCTION {bbl.number}
 { "\bblno{}" }
 
@@ -378,7 +382,22 @@ FUNCTION {format.eprint}
 FUNCTION {format.url}
 { url empty$
     { "" }
-    { "\urlprefix\url{" url * "}" * }
+    { "\url{" * url * "}" * }
+  if$
+}
+
+FUNCTION {format.available}
+{ available empty$
+    {
+      url empty$
+        { "" }
+        { new.block bbl.available ":" * " " * format.url  }
+      if$
+    }
+    {
+      bbl.available ":" * " " *
+      available * new.block
+    }
   if$
 }
 
@@ -1018,7 +1037,7 @@ FUNCTION {article}
   if$
   format.note output
   format.eprint output
-  format.url output
+  format.available output
   fin.entry
 }
 FUNCTION {book}
@@ -1050,22 +1069,36 @@ FUNCTION {book}
   format.book.pages output
   format.note output
   format.eprint output
-  format.url output
+  format.available output
+  format.retrieved output
   fin.entry
 }
 FUNCTION {booklet}
 { output.bibitem
-  format.authors output
-  author format.key output
-  format.date "year" output.check
-  date.block
-  format.title "title" output.check
-  howpublished "howpublished" bibinfo.check output
-  address "address" bibinfo.check output
+  organization empty$
+    { title "title and organization" output.check emphasize
+      title format.key output
+      format.date "year" output.check
+    }
+    { organization output.nonnull emphasize
+      organization format.key output
+      new.block
+      format.title "title" output.check
+      format.date "year" output.check
+    }
+  if$
+  format.bvolume output
+  format.number.series output
+  format.edition output
+  publisher empty$
+    { address "address" bibinfo.check output }
+    { format.publisher.address output }
+  if$
   format.book.pages output
   format.note output
   format.eprint output
-  format.url output
+  format.available output
+  format.retrieved output
   fin.entry
 }
 
@@ -1101,7 +1134,7 @@ FUNCTION {inbook}
   format.pages "pages" output.check
   format.note output
   format.eprint output
-  format.url output
+  format.available output
   fin.entry
 }
 
@@ -1127,7 +1160,7 @@ FUNCTION {incollection}
   format.pages "pages" output.check
   format.note output
   format.eprint output
-  format.url output
+  format.available output
   fin.entry
 }
 FUNCTION {inproceedings}
@@ -1154,7 +1187,7 @@ FUNCTION {inproceedings}
   format.pages "pages" output.check
   format.note output
   format.eprint output
-  format.url output
+  format.available output
   fin.entry
 }
 FUNCTION {conference} { inproceedings }
@@ -1170,7 +1203,7 @@ FUNCTION {manual}
   format.edition output
   format.note output
   format.eprint output
-  format.url output
+  format.available output
   fin.entry
 }
 
@@ -1186,7 +1219,7 @@ FUNCTION {mastersthesis}
   format.school.address output
   format.note output
   format.eprint output
-  format.url output
+  format.available output
   fin.entry
 }
 
@@ -1259,7 +1292,7 @@ FUNCTION {proceedings}
   if$
   format.note output
   format.eprint output
-  format.url output
+  format.available output
   fin.entry
 }
 
@@ -1276,7 +1309,7 @@ FUNCTION {techreport}
   address "address" bibinfo.check output
   format.note output
   format.eprint output
-  format.url output
+  format.available output
   fin.entry
 }
 
@@ -1289,7 +1322,7 @@ FUNCTION {unpublished}
   format.title "title" output.check
   format.note "note" output.check
   format.eprint output
-  format.url output
+  format.available output
   fin.entry
 }
 
