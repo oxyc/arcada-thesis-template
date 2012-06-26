@@ -80,6 +80,7 @@ ENTRY
     title
     type
     url
+    retrieved
     volume
     year
     crew
@@ -236,6 +237,9 @@ FUNCTION {bbl.of}
 
 FUNCTION {bbl.available}
 { "\bblavailable{}" }
+
+FUNCTION {bbl.retrieved}
+{ "\bblretrieved{}" }
 
 FUNCTION {bbl.number}
 { "\bblno{}" }
@@ -397,6 +401,15 @@ FUNCTION {format.available}
     {
       bbl.available ":" * " " *
       available * new.block
+    }
+  if$
+}
+FUNCTION {format.retrieved}
+{ retrieved empty$
+    { "" }
+    {
+      bbl.retrieved ":" * " " *
+      retrieved *
     }
   if$
 }
@@ -1038,6 +1051,7 @@ FUNCTION {article}
   format.note output
   format.eprint output
   format.available output
+  format.retrieved output
   fin.entry
 }
 FUNCTION {book}
@@ -1135,6 +1149,7 @@ FUNCTION {inbook}
   format.note output
   format.eprint output
   format.available output
+  format.retrieved output
   fin.entry
 }
 
@@ -1161,6 +1176,7 @@ FUNCTION {incollection}
   format.note output
   format.eprint output
   format.available output
+  format.retrieved output
   fin.entry
 }
 FUNCTION {inproceedings}
@@ -1188,6 +1204,7 @@ FUNCTION {inproceedings}
   format.note output
   format.eprint output
   format.available output
+  format.retrieved output
   fin.entry
 }
 FUNCTION {conference} { inproceedings }
@@ -1204,6 +1221,7 @@ FUNCTION {manual}
   format.note output
   format.eprint output
   format.available output
+  format.retrieved output
   fin.entry
 }
 
@@ -1220,6 +1238,7 @@ FUNCTION {mastersthesis}
   format.note output
   format.eprint output
   format.available output
+  format.retrieved output
   fin.entry
 }
 
@@ -1272,6 +1291,7 @@ FUNCTION {phdthesis}
   format.note output
   format.eprint output
   format.url output
+  format.retrieved output
   fin.entry
 }
 
@@ -1293,6 +1313,7 @@ FUNCTION {proceedings}
   format.note output
   format.eprint output
   format.available output
+  format.retrieved output
   fin.entry
 }
 
@@ -1310,6 +1331,7 @@ FUNCTION {techreport}
   format.note output
   format.eprint output
   format.available output
+  format.retrieved output
   fin.entry
 }
 
@@ -1323,6 +1345,7 @@ FUNCTION {unpublished}
   format.note "note" output.check
   format.eprint output
   format.available output
+  format.retrieved output
   fin.entry
 }
 
