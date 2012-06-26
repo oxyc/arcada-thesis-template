@@ -686,6 +686,21 @@ FUNCTION {editor.key.full}
   if$
 }
 
+FUNCTION {author.organization.key.full}
+{ author empty$
+    { organization empty$
+        { key empty$
+            { cite$ #1 #3 substring$ }
+            'key
+          if$
+        }
+        { 'organization }
+      if$
+    }
+    { author format.full.names }
+  if$
+}
+
 FUNCTION {make.full.names}
 { type$ "book" =
   type$ "inbook" =
