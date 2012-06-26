@@ -742,7 +742,7 @@ FUNCTION {n.dashify}
 }
 
 FUNCTION {word.in}
-{ bbl.in
+{ bbl.in capitalize
   ":" *
   " " * }
 
@@ -902,6 +902,7 @@ FUNCTION {format.vol.num.pages}
       select.language
       swap$ tie.or.space.prefix
       "volume" bibinfo.check
+      * ", "
       * *
     }
   if$
@@ -912,7 +913,7 @@ FUNCTION {format.vol.num.pages}
         'skip$
       if$
       swap$
-      ", " bbl.nr * number tie.or.space.prefix pop$ * swap$ *
+      bbl.nr number tie.or.space.prefix pop$ * swap$ *
     }
   if$ *
 }
@@ -1235,6 +1236,7 @@ FUNCTION {mastersthesis}
   "title" output.check
   bbl.mthesis format.thesis.type output.nonnull
   format.school.address output
+  format.pages "pages" output.check
   format.note output
   format.eprint output
   format.available output
@@ -1665,7 +1667,7 @@ FUNCTION {begin.bib}
   write$ newline$
   "\providecommand{\url}[1]{\texttt{#1}}"
   write$ newline$
-  "\providecommand{\urlprefix}{URL }"
+  "\providecommand{\urlprefix}{}"
   write$ newline$
   "\providecommand{\selectlanguage}[1]{\relax}"
   write$ newline$
