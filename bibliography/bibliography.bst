@@ -1308,39 +1308,6 @@ FUNCTION {electronic}
   fin.entry
 }
 
-FUNCTION {online}
-{ output.bibitem
-  author empty$
-    { format.title output emphasize
-      title format.key output
-      format.date "year" output.check
-      date.block
-    }
-    { format.authors output
-      author format.key output
-      format.date "year" output.check
-      date.block
-      journal empty$
-        { format.title output emphasize }
-        { format.title output
-          journal output emphasize
-        }
-      if$
-    }
-  if$
-  format.bvolume output
-  format.number.series output
-  format.edition output
-  format.howpublished output
-  organization "organization" bibinfo.check output
-  crew output
-  format.available output
-  format.retrieved output
-  format.note output
-  format.eprint output
-  fin.entry
-}
-
 FUNCTION {phdthesis}
 { output.bibitem
   format.authors "author" output.check
@@ -1396,20 +1363,6 @@ FUNCTION {techreport}
   institution "institution" bibinfo.warn output
   address "address" bibinfo.check output
   format.note output
-  format.eprint output
-  format.available output
-  format.retrieved output
-  fin.entry
-}
-
-FUNCTION {unpublished}
-{ output.bibitem
-  format.authors "author" output.check
-  author format.key output
-  format.date "year" output.check
-  date.block
-  format.title "title" output.check
-  format.note "note" output.check
   format.eprint output
   format.available output
   format.retrieved output
