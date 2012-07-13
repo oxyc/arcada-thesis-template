@@ -47,7 +47,9 @@
 \RequirePackage[titles]{tocloft} % Customize ToC
 \RequirePackage{listings} % Code
 \RequirePackage[parfill]{parskip} %
-\RequirePackage{natbib} %
+\RequirePackage{natbib} % Bibliography
+\RequirePackage{hyperref} % Hyperlinks
+\RequirePackage{ulem} % Underlined, remember to reset emph back to normal
 
 % As we need to calculate the width of the localized word `table` as this is
 % used as an offset in the LoT. Same issue for the LoF.
@@ -114,6 +116,27 @@
   title=\lstname,%
   morekeywords=function%
 }
+
+%% }}}
+%% Hyperlinks {{{
+\hypersetup{
+  colorlinks=true,
+  urlcolor=black,
+  filecolor=black,
+  citecolor=black,
+  linkcolor=black,
+  linktoc=all
+}
+
+% Reset emph back to normal due to ulem package.
+\normalem
+
+% Underline URLs
+\useunder{\uline}{\ulined}{}
+\makeatletter
+\def\url@ulstyle{\def\UrlFont{\ulined}}
+\makeatother
+\urlstyle{ul}
 
 %% }}}
 %% Layout and Typography {{{
@@ -460,9 +483,11 @@
 \let\stdbibliography\bibliography
 \renewcommand*{\bibliography}[1]{
   \newpage
-  \thispagestyle{empty}
-  {\singlespacing%
-    \stdbibliography{#1}}
+  \begingroup
+  \singlespacing
+  \raggedright
+  \stdbibliography{#1}
+  \endgroup
   \addcontentsline{toc}{section}{\refname}
 }
 \makeatother

@@ -4,7 +4,7 @@
 %%
 %% The original source files were:
 %%
-%% merlin.mbs  (with options: `babel,ay,nat,lang,vonx,nm-revf,jnrlst,aunm-semi,nmlm,x90,x9,m2,keyxyr,blkyear,dt-beg,yr-per,note-yr,atit-u,vnum-nr,volp-com,jwdpg,pp-last,jwdvol,num-xser,ser-vol,pg-bk,add-pub,pre-edn,blk-com,in-col,pp,ed,abr,xedn,amper,and-xcom,etal-xc,revdata,eprint,url,url-blk,nfss,')
+%% merlin.mbs  (with options: `babel,ay,nat,lang,vonx,nm-revf,jnrlst,aunm-semi,nmlm,x90,x9,m2,keyxyr,blkyear,dt-beg,yr-per,note-yr,atit-u,vnum-nr,volp-com,jwdpg,pp-last,jwdvol,num-xser,ser-vol,pg-bk,add-pub,pre-edn,blk-com,in-col,pp,ed,abr,xedn,amper,and-xcom,etal-xc,revdata,url,url-blk,nfss,')
 %% ----------------------------------------
 %% ***  ***
 %% 
@@ -62,7 +62,6 @@ ENTRY
     edition
     editor
     eid
-    eprint
     howpublished
     institution
     journal
@@ -371,18 +370,6 @@ FUNCTION {bibinfo.warn}
     }
   if$
 }
-FUNCTION {format.eprint}
-{ eprint duplicate$ empty$
-    'skip$
-    { "\eprint"
-      archive empty$
-        'skip$
-        { "[" * archive * "]" * }
-      if$
-      "{" * swap$ * "}" *
-    }
-  if$
-}
 FUNCTION {format.url}
 { url empty$
     { "" }
@@ -390,20 +377,23 @@ FUNCTION {format.url}
   if$
 }
 
+% Output either available or url field depending on which is exists.
 FUNCTION {format.available}
 { available empty$
-    {
+    {% Use url
       url empty$
         { "" }
         { new.block bbl.available ":" * " " * format.url  }
       if$
     }
-    {
+    {% Use available string
       bbl.available ":" * " " *
       available * new.block
     }
   if$
 }
+
+% Date retrieved
 FUNCTION {format.retrieved}
 { retrieved empty$
     { "" }
@@ -548,9 +538,10 @@ FUNCTION {format.editors}
   if$
 }
 
+% Put the abbrev after the pagecount. Eg. 212 s.
 FUNCTION {format.book.pages}
 { pages duplicate$ empty$ 'skip$
-    { "\pagecount{" bbl.pages * "}{" * swap$ * "}" * }
+    { "\pagecount{" bbl.page * "}{" * swap$ * "}" * }
   if$
 }
 FUNCTION {select.language}
@@ -582,6 +573,7 @@ FUNCTION {format.note}
     }
   if$
 }
+% Used for specifying the medium, eg. dvd, cd-rom etc.
 FUNCTION {format.howpublished}
 { howpublished duplicate$ empty$
   'skip$
@@ -649,6 +641,7 @@ FUNCTION {format.full.names}
   while$
 }
 
+% Key by author, next editor, last manually specified key.
 FUNCTION {author.editor.key.full}
 { author empty$
     { editor empty$
@@ -664,6 +657,7 @@ FUNCTION {author.editor.key.full}
   if$
 }
 
+% Key by author or manually specified key.
 FUNCTION {author.key.full}
 { author empty$
     { key empty$
@@ -675,6 +669,7 @@ FUNCTION {author.key.full}
   if$
 }
 
+% Key by editor or manually specified key.
 FUNCTION {editor.key.full}
 { editor empty$
     { key empty$
@@ -686,6 +681,7 @@ FUNCTION {editor.key.full}
   if$
 }
 
+% Key by author, orginaization or manually specified key.
 FUNCTION {author.organization.key.full}
 { author empty$
     { organization empty$
@@ -716,7 +712,8 @@ FUNCTION {make.full.names}
 
 FUNCTION {output.bibitem}
 { newline$
-  "\bibitem[{" write$
+  % Add filbreak not to break bibitems
+  "\filbreak\bibitem[{" write$
   label write$
   ")" make.full.names duplicate$ short.list =
      { pop$ }
@@ -756,6 +753,7 @@ FUNCTION {n.dashify}
   while$
 }
 
+% Capitalize in, as the word can be macro should be lowercase in other contexts
 FUNCTION {word.in}
 { bbl.in capitalize
   ":" *
@@ -1065,7 +1063,6 @@ FUNCTION {article}
     { format.journal.eid }
   if$
   format.note output
-  format.eprint output
   format.available output
   format.retrieved output
   fin.entry
@@ -1098,7 +1095,6 @@ FUNCTION {book}
   if$
   format.book.pages output
   format.note output
-  format.eprint output
   format.available output
   format.retrieved output
   fin.entry
@@ -1111,7 +1107,7 @@ FUNCTION {booklet}
       format.date "year" output.check
     }
     { organization output.nonnull emphasize
-      organization format.key output
+      title format.key output
       new.block
       format.title "title" output.check
       format.date "year" output.check
@@ -1126,7 +1122,6 @@ FUNCTION {booklet}
   if$
   format.book.pages output
   format.note output
-  format.eprint output
   format.available output
   format.retrieved output
   fin.entry
@@ -1163,7 +1158,6 @@ FUNCTION {inbook}
   if$
   format.pages "pages" output.check
   format.note output
-  format.eprint output
   format.available output
   format.retrieved output
   fin.entry
@@ -1190,7 +1184,6 @@ FUNCTION {incollection}
   if$
   format.pages "pages" output.check
   format.note output
-  format.eprint output
   format.available output
   format.retrieved output
   fin.entry
@@ -1218,7 +1211,6 @@ FUNCTION {inproceedings}
   if$
   format.pages "pages" output.check
   format.note output
-  format.eprint output
   format.available output
   format.retrieved output
   fin.entry
@@ -1235,7 +1227,6 @@ FUNCTION {manual}
   address "address" bibinfo.check output
   format.edition output
   format.note output
-  format.eprint output
   format.available output
   format.retrieved output
   fin.entry
@@ -1253,7 +1244,6 @@ FUNCTION {mastersthesis}
   format.school.address output
   format.pages "pages" output.check
   format.note output
-  format.eprint output
   format.available output
   format.retrieved output
   fin.entry
@@ -1269,7 +1259,6 @@ FUNCTION {misc}
   format.howpublished output
   new.block
   format.note output
-  format.eprint output
   format.available output
   format.retrieved output
   fin.entry
@@ -1304,7 +1293,6 @@ FUNCTION {electronic}
   format.available output
   format.retrieved output
   format.note output
-  format.eprint output
   fin.entry
 }
 
@@ -1323,7 +1311,6 @@ FUNCTION {phdthesis}
   format.school.address output
   format.pages "pages" output.check
   format.note output
-  format.eprint output
   format.available output
   format.retrieved output
   fin.entry
@@ -1345,7 +1332,6 @@ FUNCTION {proceedings}
     }
   if$
   format.note output
-  format.eprint output
   format.available output
   format.retrieved output
   fin.entry
@@ -1363,7 +1349,6 @@ FUNCTION {techreport}
   institution "institution" bibinfo.warn output
   address "address" bibinfo.check output
   format.note output
-  format.eprint output
   format.available output
   format.retrieved output
   fin.entry
