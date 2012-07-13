@@ -45,7 +45,6 @@
 \RequirePackage{setspace} % Line spacing
 \RequirePackage{titlesec} % Customize section titles
 \RequirePackage[titles]{tocloft} % Customize ToC
-\RequirePackage{listings} % Code
 \RequirePackage[parfill]{parskip} %
 \RequirePackage{natbib} % Bibliography
 \RequirePackage{hyperref} % Hyperlinks
@@ -76,6 +75,9 @@
   \main@language{english}%
 }
 
+\newif\ifisCode
+\DeclareOption{code}{\isCodetrue}
+
 % Pass stuff through to article but remember if we did so we can use arcadas
 % defaults otherwise.
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{article}}
@@ -93,29 +95,28 @@
 % }}}
 %% Code {{{
 
-\definecolor{purple}{rgb}{0.5,0,0.35}
-\definecolor{red}{rgb}{0.6,0,0}
-\lstset{%
-  language=PHP,%
-  basicstyle=\footnotesize\ttfamily,%
-  numbers=left,%
-  stepnumber=1,%
-  numberstyle=\tiny\color{gray},%
-  keywordstyle=\color{purple}\bfseries,%
-  stringstyle=\color{red},%
-  numbersep=5pt,%
-  showspaces=false,%
-  showstringspaces=false,%
-  showtabs=false,%
-  frame=single,%
-  rulecolor=\color{black},%
-  tabsize=2,%
-  captionpos=b,%
-  breaklines=true,%
-  breakatwhitespace=false,%
-  title=\lstname,%
-  morekeywords=function%
-}
+\ifisCode
+  \RequirePackage{listings}% Code
+  \lstset{%
+    basicstyle=\onehalfspacing\footnotesize%
+              \fontfamily{lmr}\selectfont,%
+    numbers=left,%
+    stepnumber=2,%
+    numberstyle=\tiny,%
+    numbersep=5pt,%
+    tabsize=2,%
+    captionpos=b,%
+    breaklines=true,%
+    breakatwhitespace=false,%
+    identifierstyle=\itshape,%
+    commentstyle=\itshape,%
+    keywordstyle=\color{black}\bfseries,%
+    stringstyle=\ttfamily,%
+    title=\lstname,%
+    morekeywords={function}%
+  }
+  \input{../helpers/lststyles}
+\fi
 
 %% }}}
 %% Hyperlinks {{{
