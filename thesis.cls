@@ -427,11 +427,11 @@
       \coljoin{}                              \\ \thickrule
       \coljoin{\sAbstract}                    \\ %todo do this in a nicer way
     \end{tabularx}%
-    \vskip -7px%
+    \vskip -16pt%
     \tabularx{\textwidth}{ !{\vthickrule} X !{\vthickrule} }%
 }{%
     \endtabularx
-    \vskip -7px%
+    \vskip -16pt%
     \begin{tabularx}{\textwidth}{ !{\vthickrule} p{5cm} | X !{\vthickrule} }
       \thickrule
       \sKeywords           & \KEYWORDS          \\ \hline
