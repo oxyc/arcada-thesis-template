@@ -37,16 +37,16 @@
  % It should serve as a model for other languages.
  % Alternatively, store it under a different name (e.g. englbst.tex)
  % and then \input it with a command in babelbst.tex.
-\iflanguage{finnish}{\input{../bibliography/finnishbst}}{
-  \iflanguage{english}{\input{../bibliography/englishbst}}{
-    \iflanguage{swedish}{\input{../bibliography/swedishbst}}{
-      \input{../bibliography/finnishbst}
+\iflanguage{finnish}{\input{\template/bibliography/finnishbst}}{
+  \iflanguage{english}{\input{\template/bibliography/englishbst}}{
+    \iflanguage{swedish}{\input{\template/bibliography/swedishbst}}{
+      \input{\template/bibliography/finnishbst}
     }
   }
 }
-\addto\captionsenglish{\input{../bibliography/englishbst}}%
-\addto\captionsfinnish{\input{../bibliography/finnishbst}}%
-\addto\captionsswedish{\input{../bibliography/swedishbst}}%
+\addto\captionsenglish{\input{\template/bibliography/englishbst}}%
+\addto\captionsfinnish{\input{\template/bibliography/finnishbst}}%
+\addto\captionsswedish{\input{\template/bibliography/swedishbst}}%
 \endinput
 %%
 %% End of file `merlin.tex'.

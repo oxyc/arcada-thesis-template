@@ -85,7 +85,7 @@
 \ProcessOptions\relax
 
 % Look for images in a couple of places
-\graphicspath{{./}{../}{./images/}{../images/}}
+\graphicspath{{\template/}{./images/}}
 
 % Define a pagecount command which will be used in the bibtex bst to determine
 % the order of p. and the pagecount (i.e., s. 123 in Swedish, 123 p. in
@@ -96,7 +96,7 @@
 %% Code {{{
 
 \ifisCode
-  \input{../helpers/lststyles}
+  \input{\template/helpers/lststyles}
 \fi
 
 %% }}}
@@ -460,8 +460,7 @@
 \begin{quotation}\noindent\textsc{Key:} #1\\
 \textsc{Annotation:}\ #2\end{quotation}}
 
-% todo path
-\bibliographystyle{../bibliography/bibliography}
+\bibliographystyle{\template/bibliography/bibliography}
 \setlength{\bibsep}{\baselineskip}
 
 \let\stdbibliography\bibliography
