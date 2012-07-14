@@ -45,9 +45,10 @@
 \RequirePackage{setspace} % Line spacing
 \RequirePackage{titlesec} % Customize section titles
 \RequirePackage[titles]{tocloft} % Customize ToC
-\RequirePackage{listings} % Code
 \RequirePackage[parfill]{parskip} %
-\RequirePackage{natbib} %
+\RequirePackage{natbib} % Bibliography
+\RequirePackage{hyperref} % Hyperlinks
+\RequirePackage{ulem} % Underlined, remember to reset emph back to normal
 
 % As we need to calculate the width of the localized word `table` as this is
 % used as an offset in the LoT. Same issue for the LoF.
@@ -74,6 +75,9 @@
   \main@language{english}%
 }
 
+\newif\ifisCode
+\DeclareOption{code}{\isCodetrue}
+
 % Pass stuff through to article but remember if we did so we can use arcadas
 % defaults otherwise.
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{article}}
@@ -91,29 +95,30 @@
 % }}}
 %% Code {{{
 
-\definecolor{purple}{rgb}{0.5,0,0.35}
-\definecolor{red}{rgb}{0.6,0,0}
-\lstset{%
-  language=PHP,%
-  basicstyle=\footnotesize\ttfamily,%
-  numbers=left,%
-  stepnumber=1,%
-  numberstyle=\tiny\color{gray},%
-  keywordstyle=\color{purple}\bfseries,%
-  stringstyle=\color{red},%
-  numbersep=5pt,%
-  showspaces=false,%
-  showstringspaces=false,%
-  showtabs=false,%
-  frame=single,%
-  rulecolor=\color{black},%
-  tabsize=2,%
-  captionpos=b,%
-  breaklines=true,%
-  breakatwhitespace=false,%
-  title=\lstname,%
-  morekeywords=function%
+\ifisCode
+  \input{../helpers/lststyles}
+\fi
+
+%% }}}
+%% Hyperlinks {{{
+\hypersetup{
+  colorlinks=true,
+  urlcolor=black,
+  filecolor=black,
+  citecolor=black,
+  linkcolor=black,
+  linktoc=all
 }
+
+% Reset emph back to normal due to ulem package.
+\normalem
+
+% Underline URLs
+\useunder{\uline}{\ulined}{}
+\makeatletter
+\def\url@ulstyle{\def\UrlFont{\ulined}}
+\makeatother
+\urlstyle{ul}
 
 %% }}}
 %% Layout and Typography {{{
@@ -160,12 +165,13 @@
 % Titles has 24pt spacing above and 12pt spacing beneath. However as
 % paragraphs should use a \blanklineskip beneath and 0pt above, we need to
 % tailor this a bit by looking at the example provided.
-\titlespacing*{\section}{0pt}{18pt}{-9pt}
-\titlespacing*{\subsection}{0pt}{18pt}{-9pt}
-\titlespacing*{\subsubsection}{0pt}{18pt}{-9pt}
+\titlespacing*{\section}{0pt}{10pt}{0pt}
+\titlespacing*{\subsection}{0pt}{10pt}{0pt}
+\titlespacing*{\subsubsection}{0pt}{10pt}{0pt}
 
 % Caption styles arent specified further than that they should be italic.
 % We define our own style which is aligned to the left with a size of 10pt
+% ftp://ctan.tug.org/ctan/macros/latex2e/contrib/caption/caption-eng.pdf
 \captionsetup[table]{%
   position=top, labelsep=period,%
   singlelinecheck=false, justification=justified,% align left
@@ -460,9 +466,11 @@
 \let\stdbibliography\bibliography
 \renewcommand*{\bibliography}[1]{
   \newpage
-  \thispagestyle{empty}
-  {\singlespacing%
-    \stdbibliography{#1}}
+  \begingroup
+  \singlespacing
+  \raggedright
+  \stdbibliography{#1}
+  \endgroup
   \addcontentsline{toc}{section}{\refname}
 }
 \makeatother

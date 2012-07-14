@@ -1,0 +1,48 @@
+\usepackage{listings}% Code
+
+\lstnewenvironment{code}[3][]{%
+  \lstset{#1}%
+  \lstset{belowskip=0pt}%
+}{%
+  \vspace{-25pt}%
+}
+
+\lstset{%
+  basicstyle=\onehalfspacing\footnotesize%
+    \fontfamily{lmr}\selectfont,%
+  numbers=left,%
+  stepnumber=2,%
+  numberstyle=\tiny,%
+  numbersep=5pt,%
+  tabsize=2,%
+  captionpos=b,%
+  breaklines=true,%
+  breakatwhitespace=false,%
+  identifierstyle=\itshape,%
+  commentstyle=\itshape,%
+  keywordstyle=\color{black}\bfseries,%
+  stringstyle=\ttfamily,%
+  title=\lstname,%
+  flexiblecolumns=true,%
+  morekeywords={function}%
+}
+\lstdefinelanguage{JavaScript}{
+  keywords={break, case, catch, continue, debugger, default, delete, do, else,%
+    finally, for, function, if, instanceof, new, return, switch, this, throw,%
+    try, typeof, var, void, while, with, true, false, null},%
+  sensitive=true,%
+  comment=[l]{//},%
+  morecomment=[s]{/*}{*/},%
+  morestring=[b]',%
+  morestring=[b]"%
+}
+\lstalias{js}{JavaScript}
+
+\lstdefinelanguage{CSS}{%
+  keywords={},%
+  sensitive=true,%
+  morecomment=[s]{/*}{*/},%
+  morestring=[b]',%
+  morestring=[b]",%
+  literate={<B>}{\.}{\bfseries}%
+}

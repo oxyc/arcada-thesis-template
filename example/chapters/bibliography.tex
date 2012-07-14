@@ -1,65 +1,74 @@
-\section{Bibliography}
+\subsection{Referenser / Bibliografi}
 
-How it works in latex..
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas molestie, nisi sed consectetur tincidunt, ante libero euismod nulla, eget commodo ligula purus eu nibh. Ut enim risus, congue sed viverra ut, tempor vel velit. Quisque consectetur tincidunt scelerisque. Donec nec mollis leo. Donec laoreet purus a massa ul
 
-\subsection{Citing}
+\subsubsection{Citera}
 
 There are several ways to cite a reference, here's a complete list of all the
 availeble cite commands and their output.
 
-\verb+\citet{bj08}+ --- \citet{bj08} \\
-\verb+\citet*{bj08}+ --- \citet*{bj08} \\
-\verb+\citep{bj08}+ --- \citep{bj08} \\
-\verb+\citep[][s. 50]{bj08}+ --- \citep[][s. 50]{bj08} \\
-\verb+\citep*{bj08}+ --- \citep*{bj08} \\
-\verb+\citep[chap. 2]{bj08}+ --- \citep[chap. 2]{bj08} \\
-\verb+\citep[jfr][]{bj08}+ --- \citep[jfr][]{bj08} \\
-\verb+\citep[jfr][s. 50]{bj08}+ --- \citep[jfr][s. 50]{bj08} \\
-\verb+\citeauthor{bj08}+ --- \citeauthor{bj08} \\
-\verb+\citeauthor*{bj08}+ --- \citeauthor*{bj08} \\
-\verb+\citeyear{bj08}+ --- \citeyear{bj08}
+\begin{tabular}{l l}
+\verb+\citet{bj08}+ & \citet{bj08} \\
+\verb+\citet*{bj08}+ & \citet*{bj08} \\
+\verb+\citep{bj08}+ & \citep{bj08} \\
+\verb+\citep[][s. 50]{bj08}+ & \citep[][s. 50]{bj08} \\
+\verb+\citep*{bj08}+ & \citep*{bj08} \\
+\verb+\citep[chap. 2]{bj08}+ & \citep[chap. 2]{bj08} \\
+\verb+\citep[jfr][]{bj08}+ & \citep[jfr][]{bj08} \\
+\verb+\citep[jfr][s. 50]{bj08}+ & \citep[jfr][s. 50]{bj08} \\
+\verb+\citeauthor{bj08}+ & \citeauthor{bj08} \\
+\verb+\citeauthor*{bj08}+ & \citeauthor*{bj08} \\
+\verb+\citeyear{bj08}+ & \citeyear{bj08}
+\end{tabular}
 
-\nocite{bj08}
-\nocite{ma07}
-\nocite{bes08}
-\nocite{chr08}
-\nocite{kk96}
-\nocite{ms08}
-\nocite{ss08}
-\nocite{yo07}
-\nocite{ue07}
-\nocite{so93}
-\nocite{jh08}
-\nocite{jk08}
-\nocite{js08a}
-\nocite{js08b}
-\nocite{mb09}
-\nocite{sd06}
-\nocite{vak04}
-\nocite{pc03}
-\nocite{eb09}
-\nocite{ne09}
-\nocite{oed09}
-\nocite{um09}
-\nocite{ff09}
-\nocite{yf07}
-\nocite{es01}
-\nocite{ks08}
-\nocite{ea05}
-\nocite{ns03}
-\nocite{jp05}
-\nocite{ssh04}
-\nocite{fapp09}
-\nocite{kn09}
+\begin{table}[h]
+\caption{Example demonstrating bibitem types and how they are displayed as inline citations}
+\footnotesize
+\begin{tabular}{l l l l}
+Type & Key & Citation example & Note \\
+\hline
+Book           & author & \citet{bj08} \\
+Book           & editor & \citet{ma07}     & Editor if author is unknown \\
+Book           & author & \citet{bes08}    & If more than one, et al is used \\
+Book           & author & \citet{chr08} \\
+Booklet        & title  & \citet{kk96}     & No author or editor \\
+Booklet        & title  & \citet{ss08} \\
+Booklet        & title  & \citet{yo07} \\
+Phd Thesis     & author & \citet{ms08} \\
+In Collection  & author & \citet{ue07}     & Chapter in a collection \\
+Booklet        & title  & \citet{so93}     & Dictionary reference\\
+Article        & author & \citet{jh08} \\
+Article        & author & \citet{jk08} \\
+Article        & author & \citet{js08a}    & Identical references uses suffix\\
+Article        & author & \citet{js08b}    & Identical references uses suffix\\
+Article        & author & \citet{mb09}     & Newspaper article \\
+Article        & author & \citet{sd06}     & Online article\\
+Article        & author & \citet{vak04}    & Online article\\
+Book           & author & \citet{pc03}     & Online book\\
+Booklet        & title  & \citet{eb09}     & Online dictionary\\
+Booklet        & title  & \citet{ne09}     & Online dictionary\\
+Booklet        & title  & \citet{oed98}    & Online dictionary\\
+Booklet        & title  & \citet{um09}     & Misc online\\
+Booklet        & title  & \citet{ff09}     & Misc online\\
+Masters Thesis & author & \citet{yf07} \\
+Misc           & author & \citet{es01}     & Oral reference \\
+Misc           & author & \citet{ks08}     & Oral reference \\
+Electronic     & title  & \citet{ea05}     & CD-ROMs, title if no author \\
+Electronic     & title  & \citet{ns03}     & CD-ROMs\\
+Electronic     & title  & \citet{jp05}     & DVDs\\
+Electronic     & title  & \citet{ssh04}    & Movies\\
+Electronic     & title  & \citet{fapp09}   & Radio\\
+Electronic     & title  & \citet{kn09}     & Television\\
+\end{tabular}
+\end{table}
 
-\subsection{Adding references}
+\subsubsection{Skapandet av referenser}
 
 Theory of the file. \\
 Running bibtex etc..
 
-\subsubsection{Example \.bib file}
+\subsubsection{Bibtex filer}
 
-\citet{ea05} To help illustrate how to reference different kinds of works, you can have a
-look at this documents \emph{references.bib} file and compare it to the
-references at the end.
+To help illustrate how to reference different kinds of works, you can have a look at this documents \emph{references.bib} file and compare it to the references at the end.
 
+% vim: set tw=78:ts=2:sw=2:et:fdm=marker:wrap:wm=78

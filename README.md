@@ -26,7 +26,7 @@ git clone https://github.com/oxyc/arcada-thesis-template.git
 
 ### Integrate with your own thesis document
 
-...
+@todo
 
 ## Features
 
@@ -40,7 +40,7 @@ git clone https://github.com/oxyc/arcada-thesis-template.git
 
 ## Macros
 
-...
+@todo
 
 ## Todo
 
