@@ -2,17 +2,43 @@
 
 \subsection{Math}
 
-\subsection{Listings}
+\subsection{Listings / Code}
 
-\begin{lstlisting}[language=Pascal]
+Om ditt arbete innehåller kod kan du välja att lägga till \verb+code+ option till \verb+\documentclass+ på första raden i ditt dokument. Detta laddar automatiskt in listing biblioteket som innehåller syntaxhighlighting on kommandon för att bl.a. läsa in externa filer inline.
+
+\subsubsection*{Kod exempel}
+
+\lstloadlanguages{Pascal,JavaScript,PHP}
+
+\begin{figure}[h]
+\begin{code}[language=Pascal]
 for i:=maxint to 0 do
 begin
   { do nothing }
 end
-\end{lstlisting}
+\end{code}
+\caption{Pascal code example}
+\end{figure}
 
-\begin{lstlisting}[language=PHP]
-for ($i = 0; $i < length($array); $i++) {
+\begin{figure}[h]
+\begin{code}[language=JavaScript]
+// Comment
+/* Second comment */
+var i;
+for (i = 0; i < myarray.length; i++) {
+  console.log(i);
+}
+\end{code}
+\caption{JavaScript code example}
+\end{figure}
+
+\begin{figure}[h]
+\begin{code}[language=PHP]
+// Comment
+/* Second comment */
+for ($i = 0; $i < count($array); $i++) {
   print $i;
 }
-\end{lstlisting}
+\end{code}
+\caption{PHP code example}
+\end{figure}

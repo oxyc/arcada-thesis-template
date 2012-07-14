@@ -96,25 +96,6 @@
 %% Code {{{
 
 \ifisCode
-  \RequirePackage{listings}% Code
-  \lstset{%
-    basicstyle=\onehalfspacing\footnotesize%
-              \fontfamily{lmr}\selectfont,%
-    numbers=left,%
-    stepnumber=2,%
-    numberstyle=\tiny,%
-    numbersep=5pt,%
-    tabsize=2,%
-    captionpos=b,%
-    breaklines=true,%
-    breakatwhitespace=false,%
-    identifierstyle=\itshape,%
-    commentstyle=\itshape,%
-    keywordstyle=\color{black}\bfseries,%
-    stringstyle=\ttfamily,%
-    title=\lstname,%
-    morekeywords={function}%
-  }
   \input{../helpers/lststyles}
 \fi
 
