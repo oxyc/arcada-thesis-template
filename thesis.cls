@@ -55,6 +55,11 @@
 \newlength{\figurelength}
 \newlength{\tablelength}
 
+\ifx\template\undefined
+  \newcommand{\template}{template}
+  \PackageWarning{thesis}{Using default thesis path, you should define it.}
+\fi
+
 \DeclareOption{finnish}{
   \def\LANGUAGE{\sFinnish}
   \setlength{\figurelength}{\widthof{Figuuri~99.~}}
