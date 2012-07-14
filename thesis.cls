@@ -165,9 +165,9 @@
 % Titles has 24pt spacing above and 12pt spacing beneath. However as
 % paragraphs should use a \blanklineskip beneath and 0pt above, we need to
 % tailor this a bit by looking at the example provided.
-\titlespacing*{\section}{0pt}{18pt}{-9pt}
-\titlespacing*{\subsection}{0pt}{18pt}{-9pt}
-\titlespacing*{\subsubsection}{0pt}{18pt}{-9pt}
+\titlespacing*{\section}{0pt}{10pt}{0pt}
+\titlespacing*{\subsection}{0pt}{10pt}{0pt}
+\titlespacing*{\subsubsection}{0pt}{10pt}{0pt}
 
 % Caption styles arent specified further than that they should be italic.
 % We define our own style which is aligned to the left with a size of 10pt
