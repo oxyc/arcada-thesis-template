@@ -246,6 +246,7 @@
   \def\sTable                  {Tabell}%
   \renewcommand\listfigurename {Figurer}%
   \renewcommand\listtablename  {Tabeller}%
+  \renewcommand\refname        {Källor}%
   \renewcommand{\pagecount}[2] {#2 #1}%
 }
 \addto\captionsfinnish{%
