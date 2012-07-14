@@ -190,6 +190,7 @@
 
 % Caption styles arent specified further than that they should be italic.
 % We define our own style which is aligned to the left with a size of 10pt
+% ftp://ctan.tug.org/ctan/macros/latex2e/contrib/caption/caption-eng.pdf
 \captionsetup[table]{%
   position=top, labelsep=period,%
   singlelinecheck=false, justification=justified,% align left
