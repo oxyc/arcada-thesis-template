@@ -80,8 +80,11 @@
   \main@language{english}%
 }
 
-\newif\ifisCode
-\DeclareOption{code}{\isCodetrue}
+\newif\ifisListing
+\DeclareOption{listing}{\isListingtrue}
+
+\newif\ifisSyntax
+\DeclareOption{syntax}{\isSyntaxtrue}
 
 % Pass stuff through to article but remember if we did so we can use arcadas
 % defaults otherwise.
@@ -98,10 +101,14 @@
 \newcommand{\pagecount}[2]{#1 #2}
 
 % }}}
-%% Code {{{
+%% Listings & Syntax etc. {{{
 
-\ifisCode
+\ifisListing
   \input{\template/helpers/lststyles}
+\fi
+
+\ifisSyntax
+  \input{\template/helpers/syntax}
 \fi
 
 %% }}}
