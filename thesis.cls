@@ -203,6 +203,9 @@
   \item\relax}{%
     \endlist}
 
+% Remove comma from inline citations.
+\bibpunct[ ]{(}{)}{,}{a}{}{,}
+
 %% }}}
 %% Colors {{{
 

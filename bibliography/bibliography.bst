@@ -1343,9 +1343,9 @@ FUNCTION {techreport}
   author format.key output
   format.date "year" output.check
   date.block
-  format.title
+  format.btitle
   "title" output.check
-  format.tr.number output.nonnull
+  %format.tr.number output.nonnull
   institution "institution" bibinfo.warn output
   address "address" bibinfo.check output
   format.note output
