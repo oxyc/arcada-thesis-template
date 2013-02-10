@@ -44,9 +44,9 @@
 \RequirePackage{lastpage} % Get page count
 \RequirePackage{setspace} % Line spacing
 \RequirePackage{titlesec} % Customize section titles
-\RequirePackage[titles]{tocloft} % Customize ToC
+\RequirePackage[titles,subfigure]{tocloft} % Customize ToC
 \RequirePackage[parfill]{parskip} %
-\RequirePackage{natbib} % Bibliography
+\RequirePackage[]{natbib} % Bibliography
 \RequirePackage{hyperref} % Hyperlinks
 \RequirePackage{ulem} % Underlined, remember to reset emph back to normal
 
@@ -390,10 +390,8 @@
     \fontsize{11pt}{0pt}\fontfamily{phv}\selectfont{#2}}%
 }
 
-% Style subsection titles
 \let\stdl@subsubsection\l@subsubsection
 \renewcommand*{\l@subsubsection}[2]{%
-  \singlespace%
   \stdl@subsubsection{%
     \it\fontsize{11pt}{0pt}\fontfamily{phv}\selectfont{#1}}{%
     \it\fontsize{11pt}{0pt}\fontfamily{phv}\selectfont{#2}}%
