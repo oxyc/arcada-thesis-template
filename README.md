@@ -6,22 +6,29 @@
 
 ### Dependencies
 
-- Base requirements
-
-  ```
-  sudo apt-get install texlive texlive-latex-extra texlive-lang-swedish texlive-lang-finnish
-  ```
-
-- Recommended packages (e.g. fancy fonts, syntaxchecker etc.).
-
-  ```
-  sudo apt-get install texlive-fonts-extra lacheck texlive-bibtex-extra
-  ```
+texlive-core, texlive-latextra, graphviz, pyxplot, gnuplot texlive-langextra texlive-fontsextra
 
 ### Installation
 
 ```
 git clone https://github.com/oxyc/arcada-thesis-template.git
+```
+
+#### Natbib and makebst compatability issue
+
+    ! Extra }, or forgotten \endgroup.
+    \par ...m \@noitemerr {\@@par }\fi \else {\@@par }
+
+To fix this error you should add the following lines before your `\begin{document}`
+
+```latex
+\renewcommand{\bibAnnoteFile}[1]{%
+\IfFileExists{#1}{\begin{quotation}\noindent\texts c{Key:} #1\\
+\textsc{Annotation:}\ \input{#1}\end{quotation}}{}}
+
+\renewcommand{\bibAnnote}[2]{%
+\begin{quotation}\noindent\textsc{Key:} #1\\
+\textsc{Annotation:}\ #2\end{quotation}}
 ```
 
 ### Integrate with your own thesis document

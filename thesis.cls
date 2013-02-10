@@ -60,7 +60,7 @@
   \PackageWarning{thesis}{Using default thesis path, you should define it.}
 \fi
 
-\DeclareOption{finnish}{
+\DeclareOption{finnish}{%
   \def\LANGUAGE{\sFinnish}
   \setlength{\figurelength}{\widthof{Figuuri~99.~}}
   \setlength{\tablelength}{\widthof{Taulukko~99.~}}
@@ -465,13 +465,13 @@
 %   \par ...m \@noitemerr {\@@par }\fi \else {\@@par }
 % @see http://www.latex-community.org/forum/viewtopic.php?f=19&t=10955
 
-\renewcommand{\bibAnnoteFile}[1]{%
-\IfFileExists{#1}{\begin{quotation}\noindent\texts c{Key:} #1\\
-\textsc{Annotation:}\ \input{#1}\end{quotation}}{}}
-
-\renewcommand{\bibAnnote}[2]{%
-\begin{quotation}\noindent\textsc{Key:} #1\\
-\textsc{Annotation:}\ #2\end{quotation}}
+% \renewcommand{\bibAnnoteFile}[1]{%
+% \IfFileExists{#1}{\begin{quotation}\noindent\texts c{Key:} #1\\
+% \textsc{Annotation:}\ \input{#1}\end{quotation}}{}}
+%
+% \renewcommand{\bibAnnote}[2]{%
+% \begin{quotation}\noindent\textsc{Key:} #1\\
+% \textsc{Annotation:}\ #2\end{quotation}}
 
 \bibliographystyle{\template/bibliography/bibliography}
 \setlength{\bibsep}{\baselineskip}
