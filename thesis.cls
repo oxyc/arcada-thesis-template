@@ -44,6 +44,7 @@
 \RequirePackage{lastpage} % Get page count
 \RequirePackage{setspace} % Line spacing
 \RequirePackage{titlesec} % Customize section titles
+\RequirePackage{subfigure} % @TODO deprecate
 \RequirePackage[titles,subfigure]{tocloft} % Customize ToC
 \RequirePackage[parfill]{parskip} %
 \RequirePackage[]{natbib} % Bibliography
