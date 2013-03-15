@@ -449,7 +449,7 @@
     \begin{tabularx}{\textwidth}{ !{\vthickrule} p{5cm} | X !{\vthickrule} }
       \thickrule
       \sKeywords           & \KEYWORDS          \\ \hline
-      \sPageCount          & \pageref{LastPage} \\ \hline
+      \sPageCount          & \PAGECOUNT         \\ \hline
       \sLanguage           & \LANGUAGE          \\ \hline
       \sDateAcceptance     & \DATEACCEPTANCE    \\ \thickrule
     \end{tabularx}
