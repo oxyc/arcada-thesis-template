@@ -1,3 +1,4 @@
+% !TEX encoding = UTF-8 Unicode
 % vim: tw=78:ts=2:sw=2:et:fdm=marker:wrap
 
 %%
@@ -353,13 +354,13 @@
 \addtocontents{lof}{\protect\thispagestyle{empty}}
 \addtocontents{lot}{\protect\thispagestyle{empty}}
 
-% LoF entries are numbered with `Figure ~Ñumber.`
+% LoF entries are numbered with `Figure ~Number.`
 \setlength{\cftfigindent}{0cm} % Remove indentation
 \setlength{\cftfignumwidth}{\figurelength}
 \renewcommand*\cftfigpresnum{\sFigure~}
 \renewcommand{\cftfigaftersnum}{.~}
 
-% LoF entries are numbered with `Table ~Ñumber.`
+% LoF entries are numbered with `Table ~Number.`
 \setlength{\cfttabindent}{0cm} % Remove indentation
 \setlength{\cfttabnumwidth}{\tablelength}
 \renewcommand*\cfttabpresnum{\sTable~}
