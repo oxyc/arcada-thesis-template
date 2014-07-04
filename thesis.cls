@@ -139,13 +139,13 @@
 \geometry{%
 % Top and bottom margin uses 2.5cm.
   top=2.5cm,
-  bottom=3.4cm, % 2.5cm + 0.9cm.
+  bottom=5.4cm, % 2.5cm + 0.9cm.
 % Left and right margin used 3cm.
   left=3cm,
   right=3cm,
 % The footer has a height of 0.9cm.
   nohead,
-  footskip=0.9cm}
+  footskip=0.1cm}
 
 % No paragraph indentation.
 \setlength{\parindent}{0pt}
@@ -246,15 +246,15 @@
   \def\sDegreeThesis           {Examensarbete}%
   \def\sDegreeProgramme        {Utbildningsprogram:}%
   \def\sIdentification         {Identifikationsnummer:}%
-  \def\sAuthor                 {Författare:}%
+  \def\sAuthor                 {F\"orfattare:}%
   \def\sTitle                  {Arbetets namn:}%
   \def\sSupervisor             {Handledare (Arcada):}%
   \def\sCommissionedBy         {Uppdragsgivare:}%
   \def\sAbstract               {Sammandrag:}%
   \def\sKeywords               {Nyckelord:}%
   \def\sPageCount              {Sidantal:}%
-  \def\sLanguage               {Språk:}%
-  \def\sDateAcceptance         {Datum för godkännande:}%
+  \def\sLanguage               {Spr\aa k:}%
+  \def\sDateAcceptance         {Datum f\"or godk\"annande:}%
   \def\sFinnish                {Finska}%
   \def\sEnglish                {Engelska}%
   \def\sSwedish                {Svenska}%
@@ -262,22 +262,22 @@
   \def\sTable                  {Tabell}%
   \renewcommand\listfigurename {Figurer}%
   \renewcommand\listtablename  {Tabeller}%
-  \renewcommand\refname        {Källor}%
+  \renewcommand\refname        {K\"allor}%
   \renewcommand{\pagecount}[2] {#2 #1}%
 }
 \addto\captionsfinnish{%
-  \def\sDegreeThesis           {Opinnäyte}%
+  \def\sDegreeThesis           {Opinn\"ayte}%
   \def\sDegreeProgramme        {Koulutusohjelma:}%
   \def\sIdentification         {Tunnistenumero:}%
-  \def\sAuthor                 {Tekijä:}%
-  \def\sTitle                  {Työn nimi:}%
-  \def\sSupervisor             {Työn ohjaaja (Arcada):}%
+  \def\sAuthor                 {Tekij\"a:}%
+  \def\sTitle                  {Ty\"on nimi:}%
+  \def\sSupervisor             {Ty\"on ohjaaja (Arcada):}%
   \def\sCommissionedBy         {Toimeksiantaja:}%
-  \def\sAbstract               {Tiivistelmä:}%
+  \def\sAbstract               {Tiivistelm\"a:}%
   \def\sKeywords               {Avainsanat:}%
-  \def\sPageCount              {Sivumäärä:}%
+  \def\sPageCount              {Sivum\"a\"ar\"a:}%
   \def\sLanguage               {Kieli:}%
-  \def\sDateAcceptance         {Hyväksymispäivämäärä:}%
+  \def\sDateAcceptance         {Hyv\"aksymisp\"aiv\"am\"a\"ar\"a:}%
   \def\sFinnish                {Suomi}%
   \def\sEnglish                {Englanti}%
   \def\sSwedish                {Ruotsi}%
@@ -353,13 +353,13 @@
 \addtocontents{lof}{\protect\thispagestyle{empty}}
 \addtocontents{lot}{\protect\thispagestyle{empty}}
 
-% LoF entries are numbered with `Figure ~Ñumber.`
+% LoF entries are numbered with `Figure ~�umber.`
 \setlength{\cftfigindent}{0cm} % Remove indentation
 \setlength{\cftfignumwidth}{\figurelength}
 \renewcommand*\cftfigpresnum{\sFigure~}
 \renewcommand{\cftfigaftersnum}{.~}
 
-% LoF entries are numbered with `Table ~Ñumber.`
+% LoF entries are numbered with `Table ~�umber.`
 \setlength{\cfttabindent}{0cm} % Remove indentation
 \setlength{\cfttabnumwidth}{\tablelength}
 \renewcommand*\cfttabpresnum{\sTable~}
