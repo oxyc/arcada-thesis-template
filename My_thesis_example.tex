@@ -1,0 +1,64 @@
+% !TEX encoding = UTF-8 Unicode
+\documentclass[titlepage, english]{thesis}
+
+
+\def\DATE{\today}
+\def\TITLE{Thesis title}
+\def\SUBHEADING{A example on a Thesis}
+\def\AUTHOR{Donald Duck}
+\def\LEVEL{Degree Thesis}
+\def\PROGRAMME{Engineering}
+\def\UNIVERSITY{Arcada of Applied Science}
+\def\IDENTIFICATION{313}
+\def\SUPERVISOR{Ludwig Von Drake}
+\def\COMMISSIONEDBY{Scrooge McDuck}
+\def\KEYWORDS{Ducks Birds Hawks}
+\def\PAGECOUNT{ \pageref{LastPage} }
+\def\DATEACCEPTANCE{1.10.2054}
+
+\begin{document}
+
+\begin{titlepage}
+\maketitle
+\end{titlepage}
+
+\begin{abstract}{english}
+This is the abstract. Blah blah blah...
+\end{abstract}
+
+\begin{abstract}{swedish}
+Ett sammandrag på svenska bokstaven där bokstäverna  å , ä och ö är inkluderade.
+Check that the encoding is correct so that åäö are visible.
+\end{abstract}
+
+\begin{abstract}{finnish}
+Samma på finska
+\end{abstract}
+
+
+\tableofcontents
+
+
+\section{Introduction}
+This is in the Introduction
+\subsection{Background}
+Go back to the underlining problem about Ducks
+\subsubsection{More about the background}
+You can find more info about Donald Ducks at wikipedia  \cite{kalle} 
+
+\newpage
+
+\section {Conclusion}
+I like Donald Duck
+
+
+
+\section{Bibliography}
+
+\begin{thebibliography}{99}
+
+\bibitem[Wikipedia(2014)]{kalle} https://en.wikipedia.org/wiki/Donald\_Duck
+
+\end{thebibliography}
+
+\end{document} 
