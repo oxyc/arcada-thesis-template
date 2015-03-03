@@ -211,11 +211,15 @@
 %% }}}
 %% Colors {{{
 
-% Used for the background
-\definecolor{orange}{RGB}          {247,149,70}
-\definecolor{orangeSaturated}{RGB} {202,162,130}
-\definecolor{gray}{RGB}            {241,241,241}
-\definecolor{white}{RGB}           {255,255,255}
+% Used for the background  
+%Cover pre autumn  2014
+%\definecolor{orange}{RGB}          {247,149,70}
+%\definecolor{orangeSaturated}{RGB} {202,162,130}
+%\definecolor{gray}{RGB}            {241,241,241}
+%\definecolor{white}{RGB}           {255,255,255}
+
+% Cover post autumn 2014
+\definecolor{coverBlack}{RGB}          {0,0,0}
 
 %% }}}
 %% Localization  {{{
@@ -297,12 +301,14 @@
 }
 \newcommand\backgroundbar{
   \put(0,0){%
-    \cbox{orange}{1.3cm}%
-    \cbox{gray}{1pt}%
-    \hspace{-4pt}%
-    \cbox{orangeSaturated}{1pt}%
-    \hspace{-6pt}%
-    \cbox{white}{5pt}%
+    \cbox{coverBlack}{1.3cm}%
+%Pre autumn 2014    
+%    \cbox{orange}{1.3cm}%
+%    \cbox{gray}{1pt}%
+%    \hspace{-4pt}%
+%    \cbox{orangeSaturated}{1pt}%
+%    \hspace{-6pt}%
+%    \cbox{white}{5pt}%
   }
 }
 
